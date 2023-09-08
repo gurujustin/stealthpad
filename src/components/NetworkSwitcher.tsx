@@ -17,7 +17,7 @@ export const NetworkSelect = () => {
       <UserMenuDivider />
       {chains.map((chain) => (
         <UserMenuItem key={chain.id} style={{ justifyContent: 'flex-start' }} onClick={() => setupNetwork(chain.id)}>
-          <Image width={24} height={24} src="https://photos.pinksale.finance/file/pinksale-logo-upload/1691597996769-a23dbf67b3ecb4728af0ad6ff04fe2f0.png" unoptimized />
+          <Image width={24} height={24} src="/images/tokens/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2.png" unoptimized />
           <Text pl="12px">{chain.name}</Text>
         </UserMenuItem>
       ))}
@@ -39,7 +39,7 @@ export const NetworkSwitcher = () => {
   return (
     <UserMenu
       mr="8px"
-      avatarSrc="https://photos.pinksale.finance/file/pinksale-logo-upload/1691597996769-a23dbf67b3ecb4728af0ad6ff04fe2f0.png"
+      avatarSrc="/images/tokens/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2.png"
       account={networkName}
       ellipsis={false}
     >

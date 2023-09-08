@@ -94,7 +94,7 @@ const MenuItem: React.FC<FooterProps> = ({
               href="/swap?outputCurrency=0xB18F98822C22492Bd6b77D19cae9367f3D60fcBf"
               target="_blank"
               scale="sm"
-              color="#262C2B"
+              color="#262626"
               endIcon={<ArrowForwardIcon color="#132621" />}
             >
               <div style={{ color: "#132621" }}>{buyCakeLabel}</div>

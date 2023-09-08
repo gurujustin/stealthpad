@@ -53,7 +53,7 @@ const InputPanel = styled.div`
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 16px;
-  border: solid 1px #1DCCA2;
+  border: solid 1px #171717;
   background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
   ${({ zapStyle }) =>

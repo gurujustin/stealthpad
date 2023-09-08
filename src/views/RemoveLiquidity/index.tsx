@@ -168,7 +168,7 @@ export default function RemoveLiquidity() {
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Punk LPs',
+      name: 'Liquidity-Pool-Token',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,

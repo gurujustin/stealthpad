@@ -106,7 +106,7 @@ const MobileModal: React.FC<MobileModalProps> = ({
         </LightGreyCard>
         <Flex flexDirection="column" pt="16px" alignItems="center">
           <Button as="a" external href={getBscScanLink(activity.tx, 'transaction', chainId)}>
-            {t('View on ShibariumScan')}
+            {t('View on Explorer')}
           </Button>
         </Flex>
       </Flex>

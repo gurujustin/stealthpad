@@ -25,7 +25,7 @@ const getHeight = ({ scale = scales.MD }: StyledInputProps) => {
     case scales.SM:
       return "32px";
     case scales.LG:
-      return "48px";
+      return "56px";
     case scales.MD:
     default:
       return "40px";
@@ -57,16 +57,7 @@ const Input = styled.input<InputProps>`
   }
 
   &:focus:not(:disabled) {
-    box-shadow: ${({ theme, isWarning, isSuccess }) => {
-      if (isWarning) {
-        return theme.shadows.warning;
-      }
-
-      if (isSuccess) {
-        return theme.shadows.success;
-      }
-      return theme.shadows.focus;
-    }};
+    border: 1px solid rgb(29, 78, 216);
   }
 `;
 

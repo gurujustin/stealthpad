@@ -12,7 +12,7 @@ export const BSC_BLOCK_TIME = 5
 export const BASE_BSC_SCAN_URLS = {
   [ChainId.BSC]: 'https://etherscan.io',
   [ChainId.BSC_TESTNET]: 'https://basescan.org/',
-  [ChainId.STEALTH_TESTNT]: 'https://goerli.etherscan.io/',
+  [ChainId.STEALTH_TESTNET]: 'https://goerli.etherscan.io/',
 }
 
 // CAKE_PER_BLOCK details

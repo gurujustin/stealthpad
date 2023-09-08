@@ -67,7 +67,7 @@ const TooltipContent = ({ blockNumber, t }: { blockNumber: number; t: ContextApi
       {t('Block %num%', { num: blockNumber })}
     </Text>
     <Link external href={getBscScanLink(blockNumber, 'block')}>
-      {t('View on ShibariumScan')}
+      {t('View on Explorer')}
     </Link>
   </>
 )

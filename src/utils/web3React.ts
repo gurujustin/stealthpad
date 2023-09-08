@@ -11,7 +11,7 @@ import { Web3Provider } from '@ethersproject/providers'
 
 const POLLING_INTERVAL = 12000
 
-const SUPPORTED_CHAIN_ID = [ChainId.BSC, ChainId.BSC_TESTNET, ChainId.STEALTH_TESTNT]
+const SUPPORTED_CHAIN_ID = [ChainId.BSC, ChainId.BSC_TESTNET, ChainId.STEALTH_TESTNET]
 
 export const injected = new InjectedConnector({ supportedChainIds: SUPPORTED_CHAIN_ID })
 
@@ -19,7 +19,7 @@ const walletconnect = new WalletConnectConnector({
   rpc: {
     [ChainId.BSC]: 'https://rpc.ankr.com/eth',
     [ChainId.BSC_TESTNET]: 'https://nd-139-982-975.p2pify.com/dec4de6f582a0e1f28ba06fc6e2b2449',
-    [ChainId.STEALTH_TESTNT]: 'https://rpc.ankr.com/eth-goerli',
+    [ChainId.STEALTH_TESTNET]: 'https://rpc.ankr.com/eth-goerli',
   },
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,

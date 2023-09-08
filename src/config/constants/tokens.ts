@@ -19,7 +19,7 @@ const STEALTH_BASE = new Token(
 )
 
 const STEALTH_MAIN = new Token(
-  ChainId.STEALTH_TESTNT,
+  ChainId.STEALTH_TESTNET,
   '0x22EEe50B1334a42d126bc846003907d261d2a67B',
   8,
   'STEALTH',
@@ -54,22 +54,49 @@ const USDT_MAIN = new Token(
   'https://www.centre.io/usdt',
 )
 
+const BUSD_MAINNET = new Token(
+  ChainId.BSC,
+  '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+  6,
+  'BUSD',
+  'Binance USD',
+  'https://www.paxos.com/busd/',
+)
+
+const BUSD_TESTNET = new Token(
+  ChainId.BSC_TESTNET,
+  '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+  6,
+  'BUSD',
+  'Binance USD',
+  'https://www.paxos.com/busd/',
+)
+
+const BUSD_MAIN = new Token(
+  ChainId.BSC_TESTNET,
+  '0xAd72025F6e7eB9f540465e7e623a5995c502E796',
+  6,
+  'BUSD',
+  'Binance USD',
+  'https://www.paxos.com/busd/',
+)
+
 export const USDC = {
   [ChainId.BSC]: USDT_BSC,
   [ChainId.BSC_TESTNET]: USDC_TESTNET,
-  [ChainId.STEALTH_TESTNT]: USDT_MAIN,
+  [ChainId.STEALTH_TESTNET]: USDT_MAIN,
 }
 
 export const STEALTH = {
   [ChainId.BSC]: STEALTH_ETH,
   [ChainId.BSC_TESTNET]: STEALTH_BASE,
-  [ChainId.STEALTH_TESTNT]: STEALTH_MAIN,
+  [ChainId.STEALTH_TESTNET]: STEALTH_MAIN,
 }
 
-export const BUSD: Record<ChainId, Token> = {
-  [ChainId.BSC]: USDT_BSC,
-  [ChainId.BSC_TESTNET]: USDC_TESTNET,
-  [ChainId.STEALTH_TESTNT]: USDT_MAIN,
+export const BUSD = {
+  [ChainId.BSC]: BUSD_MAIN,
+  [ChainId.BSC_TESTNET]: BUSD_TESTNET,
+  [ChainId.STEALTH_TESTNET]: BUSD_MAIN,
 }
 
 export const bscTokens = {
@@ -142,7 +169,7 @@ export const bscTokens = {
     'ChainId.BSC Defi blue chips token',
     'https://powerpool.finance/',
   ),
-  busd: USDT_MAIN,
+  busd: BUSD_MAINNET,
   dai: new Token(
     ChainId.BSC,
     '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
@@ -2338,7 +2365,7 @@ export const bscTokens = {
 export const bscTestnetTokens = {
   wbnb: WETH[ChainId.BSC_TESTNET],
   cake: STEALTH_BASE,
-  busd: USDC_TESTNET,
+  busd: BUSD_TESTNET,
   usdt: USDC_TESTNET,
   syrup: new Token(
     ChainId.BSC_TESTNET,
@@ -2359,9 +2386,9 @@ export const bscTestnetTokens = {
 }
 
 export const stealthTestnetTokens = {
-  wbnb: WETH[ChainId.STEALTH_TESTNT],
+  wbnb: WETH[ChainId.STEALTH_TESTNET],
   cake: STEALTH_MAIN,
-  busd: USDT_MAIN,
+  busd: BUSD_MAIN,
   usdt: USDT_MAIN,
   syrup: new Token(
     ChainId.BSC_TESTNET,

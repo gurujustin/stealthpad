@@ -109,7 +109,7 @@ library SafeMath {
 contract PunkERC20 is IPunkERC20 {
     using SafeMath for uint;
 
-    string public constant name = 'Punk LPs';
+    string public constant name = 'Liquidity-Pool-Token';
     string public constant symbol = 'Punk-LP';
     uint8 public constant decimals = 18;
     uint  public totalSupply;
