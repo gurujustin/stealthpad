@@ -1,0 +1,53 @@
+dev 
+    0x146dc81cFb51B7A265AE7128A7F77c14D6a955c6
+factory
+    0x36F5f98fA5d70BfFe5D847aFdb5a779Eb8aa35E8
+initcodehash
+     0x2bbd7558cce4e3e5f13b6e9975dd8c5f658e463e8dd824f47cab380798fcd134
+WETH
+    0x5fe8bBD2fD4Ee98b45a996DA2fd22263baD7A597
+router
+    0x8b2F33e7ce2F12b448B524decd0D09BC5c09033E
+tokenPerBlock
+    14000000000000000000
+masterchef
+    0x96bF14841f1301Af098347997A297A442A8D3752
+referral  
+    0x66c1d318DAC7488444A4781C9971dFCfF86dF4dd
+multicall 
+    0xe47deD248eFB9b0A0323F1D0e125eEf7503F9a5b
+USDT
+    0xb500C520C70DB2e03F68105588F621Bf63724715
+----- OLD
+Punk      
+    0xC16f056D4eBb5246CfB3a1D128A1974fC2cec6Aa
+Punk-ETH LP 
+    0x3655FDe73773B2F21c82e7F0Cf7FCB9A192078d4
+Punk-USDT LP
+    0xF39FAb4119A59B9528eed985D69Fc393dFE935F6
+ETH-USDT LP 
+    0xa605851B07a2bb1883687fD2805b46fc218d7D92
+
+ShibariumScan Mainnet
+https://chainlist.org/chain/8453
+------------------------------------------——-
+Symbol         
+    ETH
+ChainID        
+    8453
+RPC            
+    https://nd-139-982-975.p2pify.com/dec4de6f582a0e1f28ba06fc6e2b2449
+Explorer       
+    https://etherscan.io
+Lock Time
+    43200
+startBlock
+    2,291,340 (2147340 + (60/5 * 60 * 24 * 5(days)))  : Blocktime 5s
+
+Masterchef lpAddresses
+cake
+cake-usdt
+cake-weth
+weth-usdt
+usdt
+weth
