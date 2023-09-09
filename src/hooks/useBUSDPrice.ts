@@ -30,6 +30,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
     if (!currency || !wrapped || !chainId) {
       return undefined
     }
+    return new Price(busd, busd, '1', '0')
     // handle wbnb/bnb
     if (wrapped.equals(WETH)) {
       if (busdPair) {

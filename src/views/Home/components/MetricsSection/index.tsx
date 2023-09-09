@@ -1,13 +1,24 @@
-import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapIcon, FarmIcon, useMatchBreakpointsContext } from '@pancakeswap/uikit'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  Heading,
+  Flex,
+  Text,
+  Skeleton,
+  ChartIcon,
+  CommunityIcon,
+  SwapIcon,
+  FarmIcon,
+  useMatchBreakpointsContext,
+} from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import useSWRImmutable from 'swr/immutable'
+import useGetTopFarmsByApr from 'views/Home/hooks/useGetTopFarmsByApr'
+import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import IconCard, { IconCardData } from '../IconCard'
 import StatCardContent from './StatCardContent'
 import GradientLogo from '../GradientLogoSvg'
-import useGetTopFarmsByApr from 'views/Home/hooks/useGetTopFarmsByApr'
-import useIntersectionObserver from 'hooks/useIntersectionObserver'
 
 const Stats = () => {
   const { t } = useTranslation()
@@ -27,7 +38,6 @@ const Stats = () => {
 
   const tvlText = t('And those users are now entrusting the platform with over $%tvl% in funds.', { tvl: tvlString })
   const [entrusting, inFunds] = tvlText.split(tvlString)
-  console.log(topFarms[0])
 
   const UsersCardData: IconCardData = {
     icon: <CommunityIcon color="secondary" width="72px" />,

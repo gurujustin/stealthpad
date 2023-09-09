@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChainId, Pair, Token } from '@pancakeswap/sdk'
 import { differenceInDays } from 'date-fns'
 import flatMap from 'lodash/flatMap'
@@ -453,17 +454,17 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
 export function useTrackedTokenPairs(): [Token, Token][] {
   const { chainId } = useActiveWeb3React()
   const tokens = useOfficialsAndUserAddedTokens()
-  const config = farmsConfig
+  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
 
   // pinned pairs
   const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
 
   const farmPairs: [Token, Token][] = useMemo(
     () =>
-    config
+      config
         // .filter((farm) => farm.pid !== 0)
         .map((farm) => [deserializeToken(farm.token), deserializeToken(farm.quoteToken)]),
-    [],
+    [config],
   )
 
   // pairs for every token against every base

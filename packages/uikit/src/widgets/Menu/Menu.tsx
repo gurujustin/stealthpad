@@ -117,7 +117,6 @@ const Menu: React.FC<NavProps> = ({
 
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "/");
-  console.log('homelink', homeLink)
 
   const subLinksWithoutMobile = subLinks?.filter((subLink) => !subLink.isMobileOnly);
   const subLinksMobileOnly = subLinks?.filter((subLink) => subLink.isMobileOnly);
@@ -130,7 +129,7 @@ const Menu: React.FC<NavProps> = ({
           <StyledNav>
             <Flex>
               {/* <Logo isDark={isDark} href={homeLink?.href ?? "/swap"} /> */}
-              <Logo isDark={isDark} href={`/swap`} />
+              <Logo isDark={isDark} href="/swap" />
               {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
             </Flex>
             <Flex alignItems="center" height="100%">
@@ -154,7 +153,7 @@ const Menu: React.FC<NavProps> = ({
                 activeItem={activeSubItem}
                 isMobileOnly
               />
-              )}
+            )}
           </Flex>
         )}
         <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>

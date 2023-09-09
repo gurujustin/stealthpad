@@ -40,8 +40,8 @@ const USDC_TESTNET = new Token(
   ChainId.BSC_TESTNET,
   '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
   6,
-  'USDC',
-  'USD Coin',
+  'USDbC',
+  'USD Base Coin',
   'https://www.centre.io/usdt',
 )
 

@@ -17,7 +17,7 @@ export interface FarmWithBalance extends SerializedFarmConfig {
 const useFarmsWithBalance = () => {
   const { account, chainId } = useWeb3React()
   const poolLength = useFarmsPoolLength()
-  const config = farmsConfig 
+  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
 
   const {
     data: { farmsWithStakedBalance, earningsSum } = {

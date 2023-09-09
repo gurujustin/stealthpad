@@ -1,15 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import masterchefABI from 'config/abi/masterchef.json'
 import chunk from 'lodash/chunk'
 import multicall, { multicallv2 } from 'utils/multicall'
-import { SerializedFarmConfig } from '../../config/constants/types'
-import { SerializedFarm } from '../types'
-import { getMasterChefAddress } from '../../utils/addressHelpers'
-import { getMasterchefContract } from '../../utils/contractHelpers'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useMasterchef } from 'hooks/useContract'
 import BigNumber from 'bignumber.js'
 import { BIG_ZERO } from 'utils/bigNumber'
-
+import { SerializedFarmConfig } from '../../config/constants/types'
+import { SerializedFarm } from '../types'
+import { getMasterChefAddress } from '../../utils/addressHelpers'
+import { getMasterchefContract } from '../../utils/contractHelpers'
 
 // const masterChefAddress = getMasterChe`fAddress()
 // const masterChefContract = getMasterchefContract()
@@ -56,7 +56,7 @@ export const fetchMasterChefData = async (farms: SerializedFarmConfig[], chainId
   const masterChefAggregatedCalls = masterChefCalls
     .filter((masterChefCall) => masterChefCall[0] !== null && masterChefCall[1] !== null)
     .flat()
-  const masterChefMultiCallResult = await multicallv2({abi: masterchefABI, calls: masterChefAggregatedCalls, chainId})
+  const masterChefMultiCallResult = await multicallv2({ abi: masterchefABI, calls: masterChefAggregatedCalls, chainId })
   const masterChefChunkedResultRaw = chunk(masterChefMultiCallResult, chunkSize)
   let masterChefChunkedResultCounter = 0
   return masterChefCalls.map((masterChefCall) => {

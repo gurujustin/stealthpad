@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Skeleton, Text, useMatchBreakpointsContext } from '@pancakeswap/uikit'
@@ -119,7 +120,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   } = useTranslation()
   const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, depositFee } = farm
-  console.log('debug depositFee', depositFee)
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: quoteToken.address,

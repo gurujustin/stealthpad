@@ -1,13 +1,11 @@
 import erc20 from 'config/abi/erc20.json'
 import chunk from 'lodash/chunk'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
-import multicall, { multicallv2 } from 'utils/multicall'
+import { multicallv2 } from 'utils/multicall'
 import { SerializedFarm } from '../types'
 import { SerializedFarmConfig } from '../../config/constants/types'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const fetchFarmCalls = (farm: SerializedFarm, chainId: number) => {
-
   const { lpAddresses, token, quoteToken } = farm
   const lpAddress = getAddress(lpAddresses, chainId)
   return [
@@ -50,6 +48,6 @@ const fetchFarmCalls = (farm: SerializedFarm, chainId: number) => {
 export const fetchPublicFarmsData = async (farms: SerializedFarmConfig[], chainId: number): Promise<any[]> => {
   const farmCalls = farms.flatMap((farm) => fetchFarmCalls(farm, chainId))
   const chunkSize = farmCalls.length / farms.length
-  const farmMultiCallResult = await multicallv2({abi: erc20, calls: farmCalls, chainId})
+  const farmMultiCallResult = await multicallv2({ abi: erc20, calls: farmCalls, chainId })
   return chunk(farmMultiCallResult, chunkSize)
 }

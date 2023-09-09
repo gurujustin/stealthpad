@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { farmsConfig, farmsTestConfig, SLOW_INTERVAL } from 'config/constants'
@@ -7,8 +8,15 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ChainId } from '@pancakeswap/sdk'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from '.'
-import { DeserializedFarm, DeserializedFarmsState, DeserializedFarmUserData, SerializedFarmsState, State } from '../types'
+import {
+  DeserializedFarm,
+  DeserializedFarmsState,
+  DeserializedFarmUserData,
+  SerializedFarmsState,
+  State,
+} from '../types'
 import {
   farmSelector,
   farmFromLpSymbolSelector,
@@ -22,7 +30,7 @@ import {
 export const usePollFarmsWithUserData = () => {
   const dispatch = useAppDispatch()
   const { account, chainId } = useWeb3React()
-  const config = farmsConfig
+  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
 
   useSWRImmutable(
     ['publicFarmData', chainId],
@@ -97,7 +105,10 @@ export const useBusdPriceFromPid = (pid: number): BigNumber => {
 }
 
 export const useLpTokenPrice = (symbol: string, isTokenOnly?: boolean) => {
-  const lpTokenPriceFromLpSymbol = useMemo(() => makeLpTokenPriceFromLpSymbolSelector(symbol, isTokenOnly), [symbol])
+  const lpTokenPriceFromLpSymbol = useMemo(
+    () => makeLpTokenPriceFromLpSymbolSelector(symbol, isTokenOnly),
+    [isTokenOnly, symbol],
+  )
   return useSelector(lpTokenPriceFromLpSymbol)
 }
 

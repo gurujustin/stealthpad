@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { batch, useSelector } from 'react-redux'
@@ -6,6 +7,9 @@ import { useFastRefreshEffect, useSlowRefreshEffect } from 'hooks/useRefreshEffe
 import farmsConfig from 'config/constants/farms'
 import { livePools } from 'config/constants/pools'
 
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { farmsTestConfig } from 'config/constants'
+import { ChainId } from '@pancakeswap/sdk'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -29,31 +33,28 @@ import {
   ifoCeilingSelector,
   makeVaultPoolWithKeySelector,
 } from './selectors'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { farmsTestConfig } from 'config/constants'
 
 const lPoolAddresses = livePools.filter(({ sousId }) => sousId !== 0).map(({ earningToken }) => earningToken.address)
 
 // Only fetch farms for live pools
 
-
 export const useFetchPublicPoolsData = () => {
   const dispatch = useAppDispatch()
-  const {chainId} = useActiveWeb3React()
-  const config = farmsConfig 
+  const { chainId } = useActiveWeb3React()
+  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
   const activeFarms = config
-  .filter(
-    ({ token, pid, quoteToken }) =>
-      pid !== 0 &&
-      ((token.symbol === 'BUSD' && quoteToken.symbol === 'WETH') ||
-        lPoolAddresses.find((poolAddress) => poolAddress === token.address)),
-  )
-  .map((farm) => farm.pid)
+    .filter(
+      ({ token, pid, quoteToken }) =>
+        pid !== 0 &&
+        ((token.symbol === 'BUSD' && quoteToken.symbol === 'WETH') ||
+          lPoolAddresses.find((poolAddress) => poolAddress === token.address)),
+    )
+    .map((farm) => farm.pid)
 
   useSlowRefreshEffect(
     (currentBlock) => {
       const fetchPoolsDataWithFarms = async () => {
-        await dispatch(fetchFarmsPublicDataAsync({pids: activeFarms, chainId}))
+        await dispatch(fetchFarmsPublicDataAsync({ pids: activeFarms, chainId }))
 
         batch(() => {
           dispatch(fetchPoolsPublicDataAsync(currentBlock))

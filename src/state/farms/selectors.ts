@@ -13,7 +13,7 @@ const deserializeFarmUserData = (farm: SerializedFarm): DeserializedFarmUserData
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : BIG_ZERO,
     tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : BIG_ZERO,
     stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : BIG_ZERO,
-    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO
+    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO,
   }
 }
 
@@ -67,7 +67,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     lpTotalSupply: farm.lpTotalSupply ? new BigNumber(farm.lpTotalSupply) : BIG_ZERO,
     tokenPriceVsQuote: farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO,
     poolWeight: farm.poolWeight ? new BigNumber(farm.poolWeight) : BIG_ZERO,
-    depositFee: farm.depositFee ? new BigNumber(farm.depositFee) : BIG_ZERO
+    depositFee: farm.depositFee ? new BigNumber(farm.depositFee) : BIG_ZERO,
   }
 }
 
@@ -96,7 +96,6 @@ export const makeUserFarmFromPidSelector = (pid: number) =>
 
 export const priceCakeFromPidSelector = createSelector([selectCakeFarm], (cakeBnbFarm) => {
   const cakePriceBusdAsString = cakeBnbFarm?.tokenPriceBusd
-  console.log('debug priceCake', cakeBnbFarm)
   return new BigNumber(cakePriceBusdAsString)
 })
 
@@ -109,7 +108,7 @@ export const makeLpTokenPriceFromLpSymbolSelector = (lpSymbol: string, isTokenOn
 
     const lpTotalInQuoteToken = farm.lpTotalInQuoteToken ? new BigNumber(farm.lpTotalInQuoteToken) : BIG_ZERO
     const lpTotalSupply = farm.lpTotalSupply ? new BigNumber(farm.lpTotalSupply) : BIG_ZERO
-    
+
     if (lpTotalSupply.gt(0) && lpTotalInQuoteToken.gt(0)) {
       const farmTokenPriceInUsd = new BigNumber(farm.tokenPriceBusd)
       // console.log('getPrice', isTokenOnly, farmTokenPriceInUsd)

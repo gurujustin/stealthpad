@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useCallback, useState, useMemo, useRef, createContext } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -22,10 +23,10 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import Loading from 'components/Loading'
 import ToggleView from 'components/ToggleView/ToggleView'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { FarmWithStakedValue } from './components/types'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -145,9 +146,7 @@ const Farms: React.FC = ({ children }) => {
 
   const [stakedOnly, setStakedOnly] = useUserFarmStakedOnly(isActive)
 
-  const activeFarms = farmsLP.filter(
-    (farm) => farm.multiplier !== '0X' && (!poolLength || poolLength > farm.pid),
-  )
+  const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && (!poolLength || poolLength > farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X')
   const archivedFarms = farmsLP
 
@@ -169,15 +168,17 @@ const Farms: React.FC = ({ children }) => {
         if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
           return farm
         }
-        const totalLiquidity = farm.isTokenOnly ? new BigNumber(farm.lpTotalInQuoteToken).times(farm.tokenPriceBusd) : new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
+        const totalLiquidity = farm.isTokenOnly
+          ? new BigNumber(farm.lpTotalInQuoteToken).times(farm.tokenPriceBusd)
+          : new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
-            new BigNumber(farm.poolWeight),
-            cakePrice,
-            totalLiquidity,
-            farm.lpAddresses[ChainId.BSC],
-            regularCakePerBlock,
-          )
+              new BigNumber(farm.poolWeight),
+              cakePrice,
+              totalLiquidity,
+              farm.lpAddresses[ChainId.BSC],
+              regularCakePerBlock,
+            )
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
@@ -256,7 +257,9 @@ const Farms: React.FC = ({ children }) => {
   ])
 
   chosenFarmsLength.current = chosenFarmsMemoized.length
-  chosenFarmsMemoized = chosenFarmsMemoized.filter((f) => (f.isTokenOnly === tokenMode) || (f.isTokenOnly === undefined && !tokenMode))
+  chosenFarmsMemoized = chosenFarmsMemoized.filter(
+    (f) => f.isTokenOnly === tokenMode || (f.isTokenOnly === undefined && !tokenMode),
+  )
 
   useEffect(() => {
     if (isIntersecting) {
@@ -268,7 +271,6 @@ const Farms: React.FC = ({ children }) => {
       })
     }
   }, [isIntersecting])
-  console.log(chosenFarmsMemoized)
 
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortOption(option.value)

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react'
 import { ChainId } from '@pancakeswap/sdk'
 import { useFarms, usePriceCakeBusd } from 'state/farms/hooks'
@@ -8,29 +9,29 @@ import { getFarmApr } from 'utils/apr'
 import orderBy from 'lodash/orderBy'
 import { DeserializedFarm } from 'state/types'
 import { FetchStatus } from 'config/constants/types'
-import { FarmWithStakedValue } from '../../Farms/components/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { farmsTestConfig } from 'config/constants'
+import { FarmWithStakedValue } from '../../Farms/components/types'
 
 const useGetTopFarmsByApr = (isIntersecting: boolean) => {
   const dispatch = useAppDispatch()
-  const {chainId} = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const { data: farms, regularCakePerBlock } = useFarms()
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.Idle)
   const [fetched, setFetched] = useState(false)
   const [topFarms, setTopFarms] = useState<FarmWithStakedValue[]>([null, null, null, null, null])
-  const [totalLP, setTotalLP] = useState("0")
+  const [totalLP, setTotalLP] = useState('0')
   const cakePriceBusd = usePriceCakeBusd()
-  const config = farmsConfig
+  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
 
   useEffect(() => {
     const fetchFarmData = async () => {
       setFetchStatus(FetchStatus.Fetching)
       const activeFarms = config
       try {
-        await dispatch(fetchFarmsPublicDataAsync({pids: activeFarms.map((farm) => farm.pid), chainId}))
+        await dispatch(fetchFarmsPublicDataAsync({ pids: activeFarms.map((farm) => farm.pid), chainId }))
         setFetchStatus(FetchStatus.Fetched)
       } catch (e) {
         console.error(e)
@@ -41,7 +42,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
     if (isIntersecting && fetchStatus === FetchStatus.Idle) {
       fetchFarmData()
     }
-  }, [dispatch, setFetchStatus, fetchStatus, topFarms, isIntersecting])
+  }, [dispatch, setFetchStatus, fetchStatus, topFarms, isIntersecting, config, chainId])
 
   useEffect(() => {
     const getTopFarmsByApr = (farmsState: DeserializedFarm[]) => {
@@ -56,8 +57,8 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
       let lp = BIG_ZERO
       const farmsWithApr: FarmWithStakedValue[] = farmsWithPrices.map((farm) => {
         const totalLiquidity = farm.isTokenOnly
-        ? new BigNumber(farm.lpTotalInQuoteToken).times(farm.tokenPriceBusd)
-        : new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
+          ? new BigNumber(farm.lpTotalInQuoteToken).times(farm.tokenPriceBusd)
+          : new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
         lp = totalLiquidity.plus(lp)
         setTotalLP(lp.toString())
         const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
