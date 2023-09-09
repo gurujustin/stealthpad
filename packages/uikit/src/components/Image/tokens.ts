@@ -7,7 +7,7 @@ const tokens = {
     address: {
       1: "0xB18F98822C22492Bd6b77D19cae9367f3D60fcBf",
       8453: "0xC16f056D4eBb5246CfB3a1D128A1974fC2cec6Aa",
-      5: "0x22EEe50B1334a42d126bc846003907d261d2a67B",
+      5: "0x1Cd327b11467dF6766cf6FeaD879A15D7F869247",
     },
     decimals: 18,
     projectLink: "https://swap.stealthpad.xyz/",

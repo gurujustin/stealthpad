@@ -10,7 +10,7 @@ const Card = styled(Box)<{
   width: ${({ width }) => width ?? '100%'};
   padding: ${({ padding }) => padding ?? '1.25rem'};
   border: ${({ border }) => border};
-  border-radius: ${({ borderRadius }) => borderRadius ?? '16px'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '4px'};
   background-color: ${({ theme }) => theme.colors.background};
 `
 export default Card
@@ -26,5 +26,6 @@ export const LightGreyCard = styled(Card)`
 `
 
 export const GreyCard = styled(Card)`
-  background-color: ${({ theme }) => theme.colors.dropdown};
+  background-color: ${({ theme }) => theme.colors.inputSecondary};
+  color: ${({ theme }) => theme.colors.textDisabled};
 `

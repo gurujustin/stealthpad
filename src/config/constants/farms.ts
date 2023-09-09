@@ -1,6 +1,6 @@
 import { serializeTokens } from 'utils/serializeTokens'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { bscTestnetTokens, bscTokens } from './tokens'
+import { bscTestnetTokens, bscTokens, stealthTestnetTokens } from './tokens'
 import { SerializedFarmConfig } from './types'
 
 const serializedTokens = serializeTokens(bscTokens)
@@ -15,9 +15,9 @@ const farms: SerializedFarmConfig[] = [
     pid: 0,
     lpSymbol: 'STEALTH',
     lpAddresses: {
-      8453: '0xC419328A3A5b7b4E2312946F90cd034Cf7abf0Cc',
-      1: '0x30885515b9AeCc599Dc6D48106B471EAd26dEBB0',
-      5: ''
+      8453: '0xC16f056D4eBb5246CfB3a1D128A1974fC2cec6Aa',
+      1: '0xB18F98822C22492Bd6b77D19cae9367f3D60fcBf',
+      5: '0x1Cd327b11467dF6766cf6FeaD879A15D7F869247'
     },
     token: serializedTokens.cake,
     quoteToken: serializedTokens.usdt,
@@ -25,7 +25,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'STEALTH-USDT LP',
+    lpSymbol: 'STEALTH-USDC LP',
     lpAddresses: {
       8453: '0xC419328A3A5b7b4E2312946F90cd034Cf7abf0Cc',
       1: '0x30885515b9AeCc599Dc6D48106B471EAd26dEBB0',
@@ -47,7 +47,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'USDT-ETH LP',
+    lpSymbol: 'USDC-ETH LP',
     lpAddresses: {
       8453: '0xa605851B07a2bb1883687fD2805b46fc218d7D92',
       1: '0xA8f8B7C0a4ec1ca9fA115dAe915e33AEDdf2526B',
@@ -65,6 +65,18 @@ const farms: SerializedFarmConfig[] = [
       5: ''
     },
     token: serializedTokens.wbnb,
+    quoteToken: serializedTokens.usdt,
+    isTokenOnly: true
+  },
+  {
+    pid: 6,
+    lpSymbol: 'USDC',
+    lpAddresses: {
+      8453: '0x5fe8bBD2fD4Ee98b45a996DA2fd22263baD7A597',
+      1: '0xA8f8B7C0a4ec1ca9fA115dAe915e33AEDdf2526B',
+      5: ''
+    },
+    token: serializedTokens.usdt,
     quoteToken: serializedTokens.usdt,
     isTokenOnly: true
   },

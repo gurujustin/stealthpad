@@ -30,7 +30,6 @@ import {
   makeVaultPoolWithKeySelector,
 } from './selectors'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ChainId } from '@pancakeswap/sdk'
 import { farmsTestConfig } from 'config/constants'
 
 const lPoolAddresses = livePools.filter(({ sousId }) => sousId !== 0).map(({ earningToken }) => earningToken.address)
@@ -41,7 +40,7 @@ const lPoolAddresses = livePools.filter(({ sousId }) => sousId !== 0).map(({ ear
 export const useFetchPublicPoolsData = () => {
   const dispatch = useAppDispatch()
   const {chainId} = useActiveWeb3React()
-  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
+  const config = farmsConfig 
   const activeFarms = config
   .filter(
     ({ token, pid, quoteToken }) =>

@@ -525,9 +525,9 @@ export default function Swap() {
                           (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
                       </Button>
                     ) : noRoute && userHasSpecifiedInputOutput ? (
-                      <GreyCard style={{ textAlign: 'center', padding: '0.75rem' }}>
-                        <Text color="textSubtle">{t('Insufficient liquidity for this trade.')}</Text>
-                        {singleHopOnly && <Text color="textSubtle">{t('Try enabling multi-hop trades.')}</Text>}
+                      <GreyCard style={{ textAlign: 'center', padding: '0.75rem', height: '64px'}}>
+                        <Text color="textDisabled" fontSize={20} fontWeight={500} marginTop="6px">{t('Insufficient liquidity for this trade.')}</Text>
+                        {singleHopOnly && <Text color="textDisabled" fontSize={20} fontWeight={500} marginTop="6px">{t('Try enabling multi-hop trades.')}</Text>}
                       </GreyCard>
                     ) : showApproveFlow ? (
                       <RowBetween>

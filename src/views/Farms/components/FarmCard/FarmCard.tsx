@@ -13,7 +13,6 @@ import CardHeading from './CardHeading'
 import { FarmWithStakedValue } from '../types'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
-import getTimePeriods from 'utils/getTimePeriods'
 
 const StyledCard = styled(Card)`
   align-self: baseline;
@@ -74,35 +73,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
     setShowExpandableSection((prev) => !prev)
   }, [])
 
-  const withdrawTime = parseInt(farm.userData.lockedUntil.toString()) + parseInt(farm.lockTime.toString())
-  function format2Digit(x: string) {
-    return parseInt(x) > 9 ? x : "0" + x;
-  }
-  useEffect(() => {
-    const getRemainTime = () => {
-      currentSeconds = Math.floor(Date.now() / 1000)
-      const { days, hours, seconds, minutes } = getTimePeriods(withdrawTime - currentSeconds)
-      if (withdrawTime < currentSeconds) {
-        setHours('00')
-        setMins('00')
-        setDay('00')
-        setSeconds('00')
-        clearInterval(this)
-
-      } else {
-        setHours(format2Digit(hours.toString()))
-        setMins(format2Digit(minutes.toString()))
-        setSeconds(format2Digit(seconds.toString()))
-        setDay(format2Digit(days.toString()))
-      }
-    }
-    let currentSeconds = Math.floor(Date.now() / 1000)
-    if (withdrawTime && withdrawTime > currentSeconds) {
-      setInterval(()=> getRemainTime(), 1000)
-    }
-
-  }, [withdrawTime])
-
   return (
     <StyledCard isActive={isPromotedFarm}>
       <FarmCardInnerContainer>
@@ -142,33 +112,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
           <Text bold>{earnLabel}</Text>
         </Flex>
         <Flex justifyContent="space-between" padding="12px 0px">
-          <Text textTransform="uppercase">{t('Lock Period')}:</Text>
-          {farm.lockTime ? (
-            <Text>{Number(farm.lockTime)/86400} {t('(days)')}</Text>
-          ) : (
-            <Skeleton ml="4px" width={60} height={24} />
-          )}
-        </Flex>
-        <Flex justifyContent="space-between" padding="12px 0px">
           <Text textTransform="uppercase">{t('Deposit Fee')}:</Text>
           {farm.depositFee ? (
             <Text>{Number(farm.depositFee) / 100}%</Text>
-          ) : (
-            <Skeleton ml="4px" width={60} height={24} />
-          )}
-        </Flex>
-        <Flex justifyContent="space-between" padding="12px 0px">
-          <Text textTransform="uppercase">{t('Withdraw Fee')}:</Text>
-          {farm.withdrawFee ? (
-            <Text>{Number(farm.withdrawFee) / 100}%</Text>
-          ) : (
-            <Skeleton ml="4px" width={60} height={24} />
-          )}
-        </Flex>
-        <Flex justifyContent="space-between" padding="12px 0px">
-          <Text>{t('Locked Until')}:</Text>
-          {farm.userData.lockedUntil ? (
-            <Text>{day} : {hour} : {min} : {second}</Text>
           ) : (
             <Skeleton ml="4px" width={60} height={24} />
           )}

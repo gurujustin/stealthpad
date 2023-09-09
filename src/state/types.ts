@@ -83,7 +83,6 @@ interface SerializedFarmUserData {
   tokenBalance: string
   stakedBalance: string
   earnings: string
-  lockedUntil?: SerializedBigNumber
 }
 
 export interface DeserializedFarmUserData {
@@ -91,7 +90,6 @@ export interface DeserializedFarmUserData {
   tokenBalance: BigNumber
   stakedBalance: BigNumber
   earnings: BigNumber
-  lockedUntil?: BigNumber
 }
 
 export interface SerializedFarm extends SerializedFarmConfig {
@@ -104,9 +102,7 @@ export interface SerializedFarm extends SerializedFarmConfig {
   tokenPriceVsQuote?: SerializedBigNumber
   poolWeight?: SerializedBigNumber
   userData?: SerializedFarmUserData
-  lockTime?: SerializedBigNumber
   depositFee?: SerializedBigNumber
-  withdrawFee?: SerializedBigNumber
 }
 
 export interface DeserializedFarm extends DeserializedFarmConfig {
@@ -118,8 +114,6 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
   lpTotalSupply?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
-  lockTime?: BigNumber
-  withdrawFee?: BigNumber
   depositFee?: BigNumber
   userData?: DeserializedFarmUserData
 }

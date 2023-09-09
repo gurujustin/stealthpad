@@ -11,8 +11,6 @@ import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
-import { useEffect, useState } from 'react'
-import getTimePeriods from 'utils/getTimePeriods'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -120,7 +118,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     currentLanguage: { locale },
   } = useTranslation()
   const isActive = farm.multiplier !== '0X'
-  const { quoteToken, token, depositFee, withdrawFee } = farm
+  const { quoteToken, token, depositFee } = farm
   console.log('debug depositFee', depositFee)
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
@@ -131,38 +129,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const bsc = getBscScanLink(lpAddress, 'address')
   const info = `/info/pool/${lpAddress}`
 
-  const withdrawTime = parseInt(farm.userData.lockedUntil.toString()) + parseInt(farm.lockTime.toString())
-  function format2Digit(x: string) {
-    return parseInt(x) > 9 ? x : "0" + x;
-  }
-  const [hour, setHours] = useState('00')
-  const [min, setMins] = useState('00')
-  const [second, setSeconds] = useState('00')
-  const [day, setDay] = useState('00')
-  useEffect(() => {
-    const getRemainTime = () => {
-      currentSeconds = Math.floor(Date.now() / 1000)
-      const { days, hours, seconds, minutes } = getTimePeriods(withdrawTime - currentSeconds)
-      if (withdrawTime < currentSeconds) {
-        setHours('00')
-        setMins('00')
-        setDay('00')
-        setSeconds('00')
-        clearInterval(this)
-
-      } else {
-        setHours(format2Digit(hours.toString()))
-        setMins(format2Digit(minutes.toString()))
-        setSeconds(format2Digit(seconds.toString()))
-        setDay(format2Digit(days.toString()))
-      }
-    }
-    let currentSeconds = Math.floor(Date.now() / 1000)
-    if (withdrawTime && withdrawTime > currentSeconds) {
-      setInterval(()=> getRemainTime(), 1000)
-    }
-
-  }, [withdrawTime])
   return (
     <Container expanded={expanded}>
       <InfoContainer>
@@ -197,21 +163,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           )}
         </ValueContainer>
         <>
-        <ValueWrapper >
-          <Text>{t('Locked Until')}:</Text>
-          {farm.userData.lockedUntil ? (
-            <Text>{day} : {hour} : {min} : {second}</Text>
-          ) : (
-            <Skeleton ml="4px" width={60} height={24} />
-          )}
-        </ValueWrapper>
           <ValueWrapper>
             <Text>{t('Deposit Fee')}</Text>
             <Text>{(parseInt(depositFee.toString()) / 100).toFixed(0)} % </Text>
-          </ValueWrapper>
-          <ValueWrapper>
-            <Text>{t('Withdraw Fee')}</Text>
-            <Text>{(parseInt(withdrawFee.toString()) / 100).toFixed(0)} % </Text>
           </ValueWrapper>
         </>
         {isActive && (

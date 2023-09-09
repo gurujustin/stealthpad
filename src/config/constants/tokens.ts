@@ -20,7 +20,7 @@ const STEALTH_BASE = new Token(
 
 const STEALTH_MAIN = new Token(
   ChainId.STEALTH_TESTNET,
-  '0x22EEe50B1334a42d126bc846003907d261d2a67B',
+  '0x1Cd327b11467dF6766cf6FeaD879A15D7F869247',
   8,
   'STEALTH',
   'StealthPad Token',

@@ -24,8 +24,8 @@ const initialData = {
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.cake,
     contractAddress: {
-      8453: '0x514e2d3A05BaF075dC740fD6537e79F2330692aD',
-      1: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      8453: '0x16F3f4e9AeFF21CcB2ce18910657C91A0431EFf5',
+      1: '0x9A55E164a266f92f1aBf692ED35080F55B1a97f1',
       5: '',
     },
     poolCategory: PoolCategory.CORE,

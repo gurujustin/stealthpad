@@ -13,8 +13,7 @@ const deserializeFarmUserData = (farm: SerializedFarm): DeserializedFarmUserData
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : BIG_ZERO,
     tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : BIG_ZERO,
     stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : BIG_ZERO,
-    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO,
-    lockedUntil: farm.userData ? new BigNumber(farm.userData.lockedUntil) : BIG_ZERO,
+    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO
   }
 }
 
@@ -68,9 +67,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     lpTotalSupply: farm.lpTotalSupply ? new BigNumber(farm.lpTotalSupply) : BIG_ZERO,
     tokenPriceVsQuote: farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO,
     poolWeight: farm.poolWeight ? new BigNumber(farm.poolWeight) : BIG_ZERO,
-    depositFee: farm.depositFee ? new BigNumber(farm.depositFee) : BIG_ZERO,
-    withdrawFee: farm.withdrawFee ? new BigNumber(farm.withdrawFee) : BIG_ZERO,
-    lockTime: farm.lockTime ? new BigNumber(farm.lockTime) : BIG_ZERO,
+    depositFee: farm.depositFee ? new BigNumber(farm.depositFee) : BIG_ZERO
   }
 }
 

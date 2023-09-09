@@ -102,7 +102,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsCanFetch, chainId)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsCanFetch, chainId)
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsCanFetch, chainId)
-    const {userStakedBalances , lockedUntil} = await fetchFarmUserStakedBalances(account, farmsToFetch, chainId)
+    const {userStakedBalances} = await fetchFarmUserStakedBalances(account, farmsToFetch, chainId)
 
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
@@ -110,8 +110,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
         allowance: userFarmAllowances[index],
         tokenBalance: userFarmTokenBalances[index],
         stakedBalance: userStakedBalances[index],
-        earnings: userFarmEarnings[index],
-        lockedUntil: lockedUntil[index]
+        earnings: userFarmEarnings[index]
       }
     })
   },

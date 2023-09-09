@@ -5,7 +5,6 @@ import { BIG_ZERO, BIG_TWO, BIG_TEN } from '../../utils/bigNumber'
 import { fetchPublicFarmsData } from './fetchPublicFarmData'
 import { fetchMasterChefData } from './fetchMasterChefData'
 import { SerializedFarm } from '../types'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const fetchFarms = async (farmsToFetch: SerializedFarmConfig[], chainId: number): Promise<SerializedFarm[]> => {
 
@@ -43,8 +42,6 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[], chainId: number)
     const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
     const poolWeight = totalRegularAllocPoint ? allocPoint.div(new BigNumber(totalRegularAllocPoint)) : BIG_ZERO
     const depositFee = info ? new BigNumber(info.depositFeeBP) : BIG_ZERO
-    const withdrawFee = info ? new BigNumber(info.withdrawFeeBP) : BIG_ZERO
-    const lockTime = info ? new BigNumber(info.lockTime?._hex) : BIG_ZERO
 
     return {
       ...farm,
@@ -58,8 +55,6 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[], chainId: number)
       poolWeight: poolWeight.toJSON(),
       multiplier: `${allocPoint.div(100).toString()}X`,
       depositFee: depositFee.toJSON(),
-      withdrawFee: withdrawFee.toJSON(),
-      lockTime: lockTime.toJSON()
     }
   })
 }

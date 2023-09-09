@@ -6,6 +6,7 @@ import useSWRImmutable from 'swr/immutable'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from '.'
 import { DeserializedFarm, DeserializedFarmsState, DeserializedFarmUserData, SerializedFarmsState, State } from '../types'
 import {
@@ -17,13 +18,11 @@ import {
   makeLpTokenPriceFromLpSymbolSelector,
   makeFarmFromPidSelector,
 } from './selectors'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ChainId } from '@pancakeswap/sdk'
 
 export const usePollFarmsWithUserData = () => {
   const dispatch = useAppDispatch()
   const { account, chainId } = useWeb3React()
-  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
+  const config = farmsConfig
 
   useSWRImmutable(
     ['publicFarmData', chainId],

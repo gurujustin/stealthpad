@@ -13,6 +13,8 @@ import { getMasterChefAddress } from 'utils/addressHelpers'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import type { AppState } from 'state'
+import { ChainId } from '@pancakeswap/sdk'
+import { farmsTestConfig } from 'config/constants'
 import fetchFarms from './fetchFarms'
 import getFarmsPrices from './getFarmsPrices'
 import {
@@ -24,9 +26,6 @@ import {
 import { SerializedFarmsState, SerializedFarm } from '../types'
 import { fetchMasterChefFarmPoolLength } from './fetchMasterChefData'
 import { resetUserState } from '../global/actions'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ChainId } from '@pancakeswap/sdk'
-import { farmsTestConfig } from 'config/constants'
 
 // const noAccountFarmConfig = farmsConfig.map((farm) => ({
 //   ...farm,
@@ -53,7 +52,7 @@ export const fetchInitialFarmsData = createAsyncThunk<
     state: AppState
   }
 >('farms/fetchInitialFarmsData', async ({ chainId }) => {
-  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
+  const config = farmsConfig 
   // return getFarmConfig(chainId).then((farmDataList) => {
     return {
       data: config.map((farm) => ({
@@ -84,7 +83,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     if (state.farms.chainId !== chainId) {
       await dispatch(fetchInitialFarmsData({ chainId }))
     }
-    const config = chainId == ChainId.BSC ? farmsConfig : farmsTestConfig
+    const config = farmsConfig
     const masterChefAddress = getMasterChefAddress(chainId);
     const calls = [
       {
@@ -125,7 +124,6 @@ interface FarmUserDataResponse {
   tokenBalance: string
   stakedBalance: string
   earnings: string
-  lockedUntil: string
 }
 
 export const fetchFarmUserDataAsync = createAsyncThunk<
@@ -141,12 +139,12 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
     if (state.farms.chainId !== chainId) {
       await dispatch(fetchInitialFarmsData({ chainId }))
     }
-    const config = chainId == ChainId.BSC ? farmsConfig : farmsTestConfig
+    const config = farmsConfig
     
     const poolLength = await fetchMasterChefFarmPoolLength(chainId)
     const farmsToFetch = config.filter((farmConfig) => pids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength > f.pid)
-    const {userStakedBalances , lockedUntil} = await fetchFarmUserStakedBalances(account, farmsToFetch, chainId)
+    const {userStakedBalances} = await fetchFarmUserStakedBalances(account, farmsToFetch, chainId)
     
     const [userFarmAllowances, userFarmTokenBalances, userFarmEarnings] = await Promise.all([
       fetchFarmUserAllowances(account, farmsCanFetch, chainId),
@@ -154,7 +152,6 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
       // fetchFarmUserStakedBalances(account, farmsCanFetch, chainId),
       fetchFarmUserEarnings(account, farmsCanFetch, chainId),
     ])
-    console.log('debug depsotTime', lockedUntil)
 
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
@@ -162,8 +159,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
         allowance: userFarmAllowances[index],
         tokenBalance: userFarmTokenBalances[index],
         stakedBalance: userStakedBalances[index],
-        earnings: userFarmEarnings[index],
-        lockedUntil: lockedUntil[index]
+        earnings: userFarmEarnings[index]
       }
     })
   },
@@ -209,8 +205,7 @@ export const farmsSlice = createSlice({
             allowance: '0',
             tokenBalance: '0',
             stakedBalance: '0',
-            earnings: '0',
-            lockedUntil: '0'
+            earnings: '0'
           },
         }
       })
