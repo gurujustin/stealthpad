@@ -4,7 +4,7 @@ import { SerializedFarmConfig } from './types'
 
 const serializedTokens = serializeTokens(bscTokens)
 // const { chainId } = useActiveWeb3React()`
-export const CAKE_BNB_LP_MAINNET = '0x717Ef9CF2cB13e414Fa567e6070a7737E0CF7C17'
+export const CAKE_BNB_LP_MAINNET = '0x894961716327141031553fFAf46E754550D29faA'
 
 const farms: SerializedFarmConfig[] = [
   /**

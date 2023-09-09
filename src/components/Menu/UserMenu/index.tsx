@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react'
 import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
 import {
