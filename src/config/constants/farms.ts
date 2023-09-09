@@ -38,7 +38,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'STEALTH-USDC LP',
     lpAddresses: {
       8453: '',
-      1: '0x30885515b9AeCc599Dc6D48106B471EAd26dEBB0',
+      1: '0x4b10A3024d499169b95816d25ccFCFc8A843c1F9',
       5: '',
     },
     token: serializedTokens.cake,
@@ -49,7 +49,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'USDC-ETH LP',
     lpAddresses: {
       8453: '',
-      1: '0xA8f8B7C0a4ec1ca9fA115dAe915e33AEDdf2526B',
+      1: '0x4631a1DFAf8A57d07Fcc31fd9bA0950dEEaEe2bc',
       5: '',
     },
     token: serializedTokens.usdt,
