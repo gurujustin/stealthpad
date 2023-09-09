@@ -95,7 +95,7 @@ export const WETH = {
   ),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
-    '0x5fe8bBD2fD4Ee98b45a996DA2fd22263baD7A597',
+    '0x4200000000000000000000000000000000000006',
     18,
     'WETH',
     'Wrapped ETH',
