@@ -11,7 +11,7 @@ const STEALTH_ETH = new Token(
 
 const STEALTH_BASE = new Token(
   ChainId.BSC_TESTNET,
-  '0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9',
+  '0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9',
   8,
   'STEALTH',
   'StealthPad Token',
@@ -42,7 +42,7 @@ const USDC_TESTNET = new Token(
   6,
   'USDbC',
   'USD Base Coin',
-  'https://www.centre.io/usdt',
+  'https://www.centre.io/usdc',
 )
 
 const USDT_MAIN = new Token(
@@ -212,10 +212,10 @@ export const bscTokens = {
   ),
   usdc: new Token(
     ChainId.BSC,
-    '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
-    18,
+    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    6,
     'USDC',
-    'Binance-Peg USD Coin',
+    'USD Coin',
     'https://www.centre.io/usdc',
   ),
   kalm: new Token(
@@ -2366,7 +2366,7 @@ export const bscTestnetTokens = {
   wbnb: WETH[ChainId.BSC_TESTNET],
   cake: STEALTH_BASE,
   busd: BUSD_TESTNET,
-  usdt: USDC_TESTNET,
+  usdc: USDC_TESTNET,
   syrup: new Token(
     ChainId.BSC_TESTNET,
     '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',

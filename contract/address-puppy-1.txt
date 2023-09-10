@@ -11,7 +11,7 @@ router
 tokenPerBlock
     14000000000000000000
 masterchef
-    0x16F3f4e9AeFF21CcB2ce18910657C91A0431EFf5
+    0xfb9cFd198FBD77F5E19e04Ea2E0AEc67BaCB3cf7
 referral  
     
 multicall 

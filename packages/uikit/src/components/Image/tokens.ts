@@ -6,7 +6,7 @@ const tokens = {
     symbol: "STEALTH",
     address: {
       1: "0xB18F98822C22492Bd6b77D19cae9367f3D60fcBf",
-      8453: "0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9",
+      8453: "0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9",
       5: "0x1Cd327b11467dF6766cf6FeaD879A15D7F869247",
     },
     decimals: 18,
@@ -762,7 +762,7 @@ const tokens = {
   usdc: {
     symbol: "USDC",
     address: {
-      1: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+      1: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       8453: "",
       5: "",
     },

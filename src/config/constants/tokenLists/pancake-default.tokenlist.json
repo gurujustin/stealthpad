@@ -436,11 +436,11 @@
     },
     {
       "chainId": 8453,
-      "address": "0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9",
+      "address": "0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9",
       "name": "StealthPad",
       "symbol": "STEALTH",
       "decimals": 8,
-      "logoURI": "https://stealthpad.xyz/assets/logo-9143866f.gif"
+      "logoURI": "/images/tokens/0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9.png"
     },
     {
       "chainId": 8453,

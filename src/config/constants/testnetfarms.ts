@@ -4,7 +4,7 @@ import { SerializedFarmConfig } from './types'
 
 const serializedTokens = serializeTokens(bscTestnetTokens)
 // const { chainId } = useActiveWeb3React()`
-export const CAKE_BNB_LP_MAINNET = '0x717Ef9CF2cB13e414Fa567e6070a7737E0CF7C17'
+export const CAKE_BNB_LP_MAINNET = '0x867E3bDE595F9632cBfe03Cd1CDA15AfE9F1c2ca'
 
 const farms: SerializedFarmConfig[] = [
   /**
@@ -14,12 +14,12 @@ const farms: SerializedFarmConfig[] = [
     pid: 0,
     lpSymbol: 'STEALTH',
     lpAddresses: {
-      8453: '0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9',
+      8453: '0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9',
       1: '',
       5: '',
     },
     token: serializedTokens.cake,
-    quoteToken: serializedTokens.usdt,
+    quoteToken: serializedTokens.wbnb,
     isTokenOnly: true,
   },
   {
@@ -35,24 +35,24 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'STEALTH-USDC LP',
+    lpSymbol: 'STEALTH-USDbC LP',
     lpAddresses: {
-      8453: '0x8c5905c63d94f4d841d4f1d400422deac7678fc7',
+      8453: '0xa779c0a79AF31B469e2107D9EC848E541899247a',
       1: '',
       5: '',
     },
     token: serializedTokens.cake,
-    quoteToken: serializedTokens.usdt,
+    quoteToken: serializedTokens.usdc,
   },
   {
     pid: 3,
-    lpSymbol: 'USDC-ETH LP',
+    lpSymbol: 'USDbC-ETH LP',
     lpAddresses: {
       8453: '0x1D3Dd7fCB2eC13a639E6B5265e63D9120e639444',
       1: '',
       5: '',
     },
-    token: serializedTokens.usdt,
+    token: serializedTokens.usdc,
     quoteToken: serializedTokens.wbnb,
   },
   {
@@ -64,19 +64,19 @@ const farms: SerializedFarmConfig[] = [
       5: '',
     },
     token: serializedTokens.wbnb,
-    quoteToken: serializedTokens.usdt,
+    quoteToken: serializedTokens.usdc,
     isTokenOnly: true,
   },
   {
     pid: 5,
-    lpSymbol: 'USDBC',
+    lpSymbol: 'USDbC',
     lpAddresses: {
       8453: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
       1: '',
       5: '',
     },
-    token: serializedTokens.usdt,
-    quoteToken: serializedTokens.usdt,
+    token: serializedTokens.usdc,
+    quoteToken: serializedTokens.wbnb,
     isTokenOnly: true,
   },
 ]

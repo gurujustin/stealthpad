@@ -19,7 +19,7 @@ const farms: SerializedFarmConfig[] = [
       5: '',
     },
     token: serializedTokens.cake,
-    quoteToken: serializedTokens.usdt,
+    quoteToken: serializedTokens.wbnb,
     isTokenOnly: true,
   },
   {
@@ -42,17 +42,17 @@ const farms: SerializedFarmConfig[] = [
       5: '',
     },
     token: serializedTokens.cake,
-    quoteToken: serializedTokens.usdt,
+    quoteToken: serializedTokens.usdc,
   },
   {
     pid: 3,
-    lpSymbol: 'USDC-ETH LP',
+    lpSymbol: 'ETH-USDC LP',
     lpAddresses: {
       8453: '',
       1: '0x4631a1DFAf8A57d07Fcc31fd9bA0950dEEaEe2bc',
       5: '',
     },
-    token: serializedTokens.usdt,
+    token: serializedTokens.usdc,
     quoteToken: serializedTokens.wbnb,
   },
   {
@@ -64,7 +64,7 @@ const farms: SerializedFarmConfig[] = [
       5: '',
     },
     token: serializedTokens.wbnb,
-    quoteToken: serializedTokens.usdt,
+    quoteToken: serializedTokens.usdc,
     isTokenOnly: true,
   },
   {
@@ -75,8 +75,8 @@ const farms: SerializedFarmConfig[] = [
       1: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
       5: '',
     },
-    token: serializedTokens.usdt,
-    quoteToken: serializedTokens.usdt,
+    token: serializedTokens.usdc,
+    quoteToken: serializedTokens.wbnb,
     isTokenOnly: true,
   },
 ]
