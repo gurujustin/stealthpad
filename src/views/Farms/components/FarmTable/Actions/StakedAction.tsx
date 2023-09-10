@@ -34,6 +34,7 @@ interface StackedActionProps extends FarmWithStakedValue {
   lpLabel?: string
   displayApr?: string
   isTokenOnly?: boolean
+  decimals?: number
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({
@@ -51,6 +52,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   tokenAmountTotal,
   quoteTokenAmountTotal,
   isTokenOnly,
+  decimals,
 }) => {
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
@@ -58,7 +60,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { account } = useWeb3React()
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
-  const { onStake } = useStakeFarms(pid, chainId)
+  const { onStake } = useStakeFarms(pid)
   const { onUnstake } = useUnstakeFarms(pid)
   const router = useRouter()
   const lpPrice = useLpTokenPrice(lpSymbol, isTokenOnly)
@@ -76,7 +78,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   const handleStake = async (amount: string) => {
     const receipt = await fetchWithCatchTxError(() => {
-      return onStake(amount)
+      return onStake(amount, decimals)
     })
     if (receipt?.status) {
       toastSuccess(
@@ -91,7 +93,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   const handleUnstake = async (amount: string) => {
     const receipt = await fetchWithCatchTxError(() => {
-      return onUnstake(amount)
+      return onUnstake(amount, decimals)
     })
     if (receipt?.status) {
       toastSuccess(
@@ -118,10 +120,17 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       addLiquidityUrl={addLiquidityUrl}
       cakePrice={cakePrice}
       isTokenOnly={isTokenOnly}
+      decimals={decimals}
     />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} isTokenOnly={isTokenOnly} />,
+    <WithdrawModal
+      max={stakedBalance}
+      onConfirm={handleUnstake}
+      tokenName={lpSymbol}
+      isTokenOnly={isTokenOnly}
+      decimals={decimals}
+    />,
   )
   const lpContract = useERC20(stakingAddress)
   const dispatch = useAppDispatch()
@@ -174,6 +183,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               lpTotalSupply={lpTotalSupply}
               tokenAmountTotal={tokenAmountTotal}
               quoteTokenAmountTotal={quoteTokenAmountTotal}
+              decimals={decimals}
             />
             <IconButtonWrapper>
               <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
@@ -209,7 +219,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             variant="secondary"
             disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
           >
-            {isTokenOnly ? `Stake ${lpSymbol}` : t('Stake LP')}
+            {/* {isTokenOnly ? `Stake ${lpSymbol}` : t('Stake LP')} */}
+            Stake
           </Button>
         </ActionContent>
       </ActionContainer>

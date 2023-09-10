@@ -14,6 +14,7 @@ interface StackedLPProps {
   tokenAmountTotal: BigNumber
   quoteTokenAmountTotal: BigNumber
   isTokenOnly?: boolean
+  decimals?: number
 }
 
 const StakedLP: React.FunctionComponent<StackedLPProps> = ({
@@ -25,12 +26,13 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
   tokenAmountTotal,
   quoteTokenAmountTotal,
   isTokenOnly,
+  decimals,
 }) => {
   const lpPrice = useLpTokenPrice(lpSymbol, isTokenOnly)
 
   const displayBalance = useMemo(() => {
-    return formatLpBalance(stakedBalance)
-  }, [stakedBalance])
+    return formatLpBalance(stakedBalance, decimals)
+  }, [decimals, stakedBalance])
 
   return (
     <Flex flexDirection="column" alignItems="flex-start">
@@ -45,23 +47,24 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
             unit=" USD"
             prefix="~"
           />
-
-          {!isTokenOnly && <Flex style={{ gap: '4px' }}>
-            <Balance
-              fontSize="12px"
-              color="textSubtle"
-              decimals={2}
-              value={stakedBalance.div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
-              unit={` ${tokenSymbol}`}
-            />
-            <Balance
-              fontSize="12px"
-              color="textSubtle"
-              decimals={2}
-              value={stakedBalance.div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
-              unit={` ${quoteTokenSymbol}`}
-            />
-          </Flex>}
+          {!isTokenOnly && (
+            <Flex style={{ gap: '4px' }}>
+              <Balance
+                fontSize="12px"
+                color="textSubtle"
+                decimals={2}
+                value={stakedBalance.div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
+                unit={` ${tokenSymbol}`}
+              />
+              <Balance
+                fontSize="12px"
+                color="textSubtle"
+                decimals={2}
+                value={stakedBalance.div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
+                unit={` ${quoteTokenSymbol}`}
+              />
+            </Flex>
+          )}
         </>
       )}
     </Flex>

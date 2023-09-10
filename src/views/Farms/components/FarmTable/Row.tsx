@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, createElement } from 'react'
 import styled from 'styled-components'
 import { Flex, useMatchBreakpointsContext } from '@pancakeswap/uikit'
@@ -104,9 +105,9 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               case 'type':
                 return (
                   <td key={key}>
-                    <CellInner style={{ width: '100px' }}>
+                    {/* <CellInner style={{ width: '100px' }}>
                       {props[key] === 'community' ? <FarmAuctionTag scale="sm" /> : <CoreTag scale="sm" />}
-                    </CellInner>
+                    </CellInner> */}
                   </td>
                 )
               case 'details':
@@ -147,7 +148,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
 
     return (
       <>
-        <tr style={{ cursor: 'pointer' }} onClick={toggleActionPanel}>
+        {/* <tr style={{ cursor: 'pointer' }} onClick={toggleActionPanel}>
           <FarmMobileCell colSpan={3}>
             <Flex justifyContent="space-between" alignItems="center">
               <Farm {...props.farm} />
@@ -158,7 +159,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               )}
             </Flex>
           </FarmMobileCell>
-        </tr>
+        </tr> */}
         <StyledTr onClick={toggleActionPanel}>
           <td width="33%">
             <EarnedMobileCell>

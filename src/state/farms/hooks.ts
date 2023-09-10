@@ -30,7 +30,7 @@ import {
 export const usePollFarmsWithUserData = () => {
   const dispatch = useAppDispatch()
   const { account, chainId } = useWeb3React()
-  const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
+  const config = chainId !== ChainId.BSC ? farmsTestConfig : farmsConfig
 
   useSWRImmutable(
     ['publicFarmData', chainId],

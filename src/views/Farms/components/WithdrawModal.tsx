@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import BigNumber from 'bignumber.js'
 import { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, AutoRenewIcon } from '@pancakeswap/uikit'
@@ -11,15 +12,23 @@ interface WithdrawModalProps {
   onDismiss?: () => void
   tokenName?: string
   isTokenOnly?: boolean
+  decimals?: number
 }
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '', isTokenOnly }) => {
+const WithdrawModal: React.FC<WithdrawModalProps> = ({
+  onConfirm,
+  onDismiss,
+  max,
+  tokenName = '',
+  isTokenOnly,
+  decimals,
+}) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
-  }, [max])
+    return getFullDisplayBalance(max, decimals)
+  }, [decimals, max])
 
   const valNumber = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
@@ -38,14 +47,14 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={isTokenOnly ? t('Unstake tokens') : t('Unstake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Unstake')} onDismiss={onDismiss}>
       <ModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}
         value={val}
         max={fullBalance}
         symbol={tokenName}
-        inputTitle={t('Unstake')}
+        inputTitle={t(`Unstake ${tokenName}`)}
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>

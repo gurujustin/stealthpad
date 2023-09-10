@@ -83,7 +83,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     if (state.farms.chainId !== chainId) {
       await dispatch(fetchInitialFarmsData({ chainId }))
     }
-    const config = chainId === ChainId.BSC ? farmsConfig : farmsTestConfig
+    const config = chainId !== ChainId.BSC ? farmsTestConfig : farmsConfig
     const masterChefAddress = getMasterChefAddress(chainId)
     const calls = [
       {
@@ -99,6 +99,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     const [[poolLength], [cakePerBlockRaw]] = await multicall(masterchefABI, calls, chainId)
     const regularCakePerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
     const farmsToFetch = config.filter((farmConfig) => pids.includes(farmConfig.pid))
+
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
 
     const farms = await fetchFarms(farmsCanFetch, chainId)

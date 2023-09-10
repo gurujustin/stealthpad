@@ -10,11 +10,11 @@ import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
 import styled from 'styled-components'
 import { getAddress } from 'utils/addressHelpers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { FarmWithStakedValue } from '../types'
 import useApproveFarm from '../../hooks/useApproveFarm'
 import HarvestAction from './HarvestAction'
 import StakeAction from './StakeAction'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const Action = styled.div`
   padding-top: 16px;
@@ -33,8 +33,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const { toastSuccess } = useToast()
   const { chainId } = useActiveWeb3React()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
-  const { pid, lpAddresses, isTokenOnly } = farm
-
+  const { pid, lpAddresses, isTokenOnly, decimals } = farm
   const { allowance, earnings } = farm.userData || {}
   const lpAddress = isTokenOnly ? farm.token.address : getAddress(lpAddresses, chainId)
   const isApproved = account && allowance && allowance.isGreaterThan(0)
@@ -51,14 +50,23 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       toastSuccess(t('Contract Enabled'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       dispatch(fetchFarmUserDataAsync({ account, pids: [pid], chainId }))
     }
-  }, [onApprove, dispatch, account, pid, t, toastSuccess, fetchWithCatchTxError])
+  }, [fetchWithCatchTxError, onApprove, toastSuccess, t, dispatch, account, pid, chainId])
 
   const renderApprovalOrStakeButton = () => {
     return isApproved ? (
-      <StakeAction {...farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} displayApr={displayApr} isTokenOnly={farm.isTokenOnly} />
+      <StakeAction
+        {...farm}
+        lpLabel={lpLabel}
+        addLiquidityUrl={addLiquidityUrl}
+        displayApr={displayApr}
+        isTokenOnly={farm.isTokenOnly}
+        decimals={decimals}
+      />
     ) : (
       <Button mt="8px" width="100%" disabled={pendingTx} onClick={handleApprove}>
-        <div className="" style={{ color: "#132621"}}>{t('Enable Contract')}</div> 
+        <div className="" style={{ color: '#132621' }}>
+          {t('Enable Contract')}
+        </div>
       </Button>
     )
   }
@@ -73,7 +81,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           {t('Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} />
+      <HarvestAction earnings={earnings} pid={pid} decimals={decimals} />
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           {farm.lpSymbol}

@@ -29,6 +29,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     auctionHostingStartSeconds,
     quoteTokenPriceBusd,
     tokenPriceBusd,
+    decimals,
   } = farm
 
   const auctionHostingStartDate = !isUndefinedOrNull(auctionHostingStartSeconds)
@@ -54,6 +55,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     dual,
     multiplier,
     isTokenOnly,
+    decimals,
     isCommunity: isFarmCommunity,
     auctionHostingEndDate: auctionHostingEndDate?.toJSON(),
     quoteTokenPriceBusd,

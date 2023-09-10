@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import BigNumber from 'bignumber.js'
 import { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
@@ -44,6 +45,7 @@ interface DepositModalProps {
   addLiquidityUrl?: string
   cakePrice?: BigNumber
   isTokenOnly?: boolean
+  decimals?: number
 }
 
 const DepositModal: React.FC<DepositModalProps> = ({
@@ -60,14 +62,15 @@ const DepositModal: React.FC<DepositModalProps> = ({
   addLiquidityUrl,
   cakePrice,
   isTokenOnly,
+  decimals,
 }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const [showRoiCalculator, setShowRoiCalculator] = useState(false)
   const { t } = useTranslation()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
-  }, [max])
+    return getFullDisplayBalance(max, decimals)
+  }, [decimals, max])
 
   const lpTokensToStake = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
@@ -117,7 +120,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
   }
 
   return (
-    <Modal title={isTokenOnly ? `${t('Stake ') + tokenName}s` : t('Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Stake')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -125,7 +128,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         max={fullBalance}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
-        inputTitle={t('Stake')}
+        inputTitle={t(`Stake ${tokenName}`)}
       />
       <Flex mt="24px" alignItems="center" justifyContent="space-between">
         <Text mr="8px" color="textSubtle">

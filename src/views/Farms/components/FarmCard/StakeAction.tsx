@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import { Button, Flex, IconButton, AddIcon, MinusIcon, useModal } from '@pancakeswap/uikit'
@@ -22,6 +23,7 @@ interface FarmCardActionsProps extends FarmWithStakedValue {
   addLiquidityUrl?: string
   displayApr?: string
   isTokenOnly?: boolean
+  decimals?: number
 }
 
 const IconButtonWrapper = styled.div`
@@ -45,10 +47,11 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenAmountTotal,
   quoteTokenAmountTotal,
   isTokenOnly,
+  decimals,
 }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
-  const { onStake } = useStakeFarms(pid, chainId)
+  const { onStake } = useStakeFarms(pid)
   const { onUnstake } = useUnstakeFarms(pid)
   const { tokenBalance, stakedBalance } = useFarmUser(pid)
   const cakePrice = usePriceCakeBusd()
@@ -61,7 +64,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const handleStake = async (amount: string) => {
     const receipt = await fetchWithCatchTxError(() => {
-      return onStake(amount)
+      return onStake(amount, decimals)
     })
     if (receipt?.status) {
       toastSuccess(
@@ -76,7 +79,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const handleUnstake = async (amount: string) => {
     const receipt = await fetchWithCatchTxError(() => {
-      return onUnstake(amount)
+      return onUnstake(amount, decimals)
     })
     if (receipt?.status) {
       toastSuccess(
@@ -103,10 +106,17 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       addLiquidityUrl={addLiquidityUrl}
       cakePrice={cakePrice}
       isTokenOnly={isTokenOnly}
+      decimals={decimals}
     />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} isTokenOnly={isTokenOnly} />,
+    <WithdrawModal
+      max={stakedBalance}
+      onConfirm={handleUnstake}
+      tokenName={lpSymbol}
+      isTokenOnly={isTokenOnly}
+      decimals={decimals}
+    />,
   )
 
   const renderStakingButtons = () => {
@@ -115,7 +125,8 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
       >
-        {isTokenOnly ? `Stake ${lpSymbol}` : t('Stake LP')}
+        {/* {isTokenOnly ? `Stake ${lpSymbol}` : t('Stake LP')} */}
+        Stake
       </Button>
     ) : (
       <IconButtonWrapper>
@@ -144,6 +155,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         tokenAmountTotal={tokenAmountTotal}
         quoteTokenAmountTotal={quoteTokenAmountTotal}
         isTokenOnly={isTokenOnly}
+        decimals={decimals}
       />
       {renderStakingButtons()}
     </Flex>

@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Text } from '@pancakeswap/uikit'
 import { Token } from '@pancakeswap/sdk'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { TokenPairImage } from 'components/TokenImage'
+import { TokenImage, TokenPairImage } from 'components/TokenImage'
 import { bscTokens } from 'config/constants/tokens'
 
 export interface FarmProps {
@@ -55,15 +55,9 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
     <Container>
       <TokenWrapper>
         {isTokenOnly ? (
-          <TokenPairImage primaryToken={token} secondaryToken={bscTokens.cake} width={40} height={40} />
+          <TokenImage token={token} width={40} height={40} />
         ) : (
-          <TokenPairImage
-            variant="inverted"
-            primaryToken={token}
-            secondaryToken={quoteToken}
-            width={40}
-            height={40}
-          />
+          <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={40} height={40} />
         )}
       </TokenWrapper>
       <div>

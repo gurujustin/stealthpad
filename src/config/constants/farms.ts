@@ -4,7 +4,7 @@ import { SerializedFarmConfig } from './types'
 
 const serializedTokens = serializeTokens(bscTokens)
 // const { chainId } = useActiveWeb3React()`
-export const CAKE_BNB_LP_MAINNET = '0x894961716327141031553fFAf46E754550D29faA'
+export const CAKE_BNB_LP_MAINNET = '0x626BB5e02694372b5A919A5981659595C2FD3788'
 
 const farms: SerializedFarmConfig[] = [
   /**
@@ -39,7 +39,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'STEALTH-USDC LP',
     lpAddresses: {
       8453: '',
-      1: '0x4b10A3024d499169b95816d25ccFCFc8A843c1F9',
+      1: '0x9Fe9fC20895f92bC541a082dAa17929791bf8b54',
       5: '',
     },
     token: serializedTokens.cake,
@@ -50,7 +50,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'ETH-USDC LP',
     lpAddresses: {
       8453: '',
-      1: '0x4631a1DFAf8A57d07Fcc31fd9bA0950dEEaEe2bc',
+      1: '0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc',
       5: '',
     },
     token: serializedTokens.usdc,

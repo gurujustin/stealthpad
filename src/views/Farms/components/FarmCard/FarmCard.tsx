@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useCallback, useEffect } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
@@ -123,7 +124,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
           farm={farm}
           lpLabel={lpLabel}
           account={account}
-          addLiquidityUrl={addLiquidityUrl}
+          addLiquidityUrl={farm.isTokenOnly ? `/swap?outputCurrency=${farm.token.address}` : addLiquidityUrl}
           displayApr={displayApr}
         />
       </FarmCardInnerContainer>

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from 'styled-components'
 import { Tag, Flex, Heading, Skeleton } from '@pancakeswap/uikit'
 import { Token } from '@pancakeswap/sdk'
 import { FarmAuctionTag, CoreTag } from 'components/Tags'
-import { TokenPairImage } from 'components/TokenImage'
+import { TokenImage, TokenPairImage } from 'components/TokenImage'
 import { bscTokens } from 'config/constants/tokens'
 
 export interface ExpandableSectionProps {
@@ -25,20 +26,26 @@ const MultiplierTag = styled(Tag)`
   color: #132621;
 `
 
-const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm, token, quoteToken, isTokenOnly }) => {
+const CardHeading: React.FC<ExpandableSectionProps> = ({
+  lpLabel,
+  multiplier,
+  isCommunityFarm,
+  token,
+  quoteToken,
+  isTokenOnly,
+}) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      {
-          isTokenOnly ? 
-            <TokenPairImage primaryToken={token} secondaryToken={bscTokens.cake} width={100} height={100} />
-          : 
-            <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={100} height={100} />
-        }
+      {isTokenOnly ? (
+        <TokenImage token={token} width={100} height={100} />
+      ) : (
+        <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={100} height={100} />
+      )}
       {/* <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} /> */}
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{isTokenOnly ? token.symbol : lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
-          {isCommunityFarm ? <FarmAuctionTag /> : <CoreTag />}
+          {/* {isCommunityFarm ? <FarmAuctionTag /> : <CoreTag />} */}
           {multiplier ? (
             <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
           ) : (

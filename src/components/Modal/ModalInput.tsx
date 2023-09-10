@@ -93,7 +93,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
           <Button scale="sm" onClick={onSelectMax} mr="8px">
             {t('Max')}
           </Button>
-          <Text fontSize="16px">{symbol}</Text>
+          {/* <Text fontSize="16px">{symbol}</Text> */}
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (

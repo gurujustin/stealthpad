@@ -48,7 +48,7 @@ const StakeButton: React.FC<StackedActionProps> = ({
   const { toastSuccess } = useToast()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
-  const { onStake } = useStakeFarms(pid, chainId)
+  const { onStake } = useStakeFarms(pid)
   const { onUnstake } = useUnstakeFarms(pid)
   const lpPrice = useLpTokenPrice(lpSymbol)
   const cakePrice = usePriceCakeBusd()
@@ -64,7 +64,7 @@ const StakeButton: React.FC<StackedActionProps> = ({
 
   const handleStake = async (amount: string) => {
     const receipt = await fetchWithCatchTxError(() => {
-      return onStake(amount)
+      return onStake(amount, 18)
     })
     if (receipt?.status) {
       toastSuccess(
@@ -79,7 +79,7 @@ const StakeButton: React.FC<StackedActionProps> = ({
 
   const handleUnstake = async (amount: string) => {
     const receipt = await fetchWithCatchTxError(() => {
-      return onUnstake(amount)
+      return onUnstake(amount, 18)
     })
     if (receipt?.status) {
       toastSuccess(
@@ -127,7 +127,7 @@ const StakeButton: React.FC<StackedActionProps> = ({
       toastSuccess(t('Contract Enabled'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       dispatch(fetchFarmUserDataAsync({ account, pids: [pid], chainId }))
     }
-  }, [onApprove, dispatch, account, pid, t, toastSuccess, fetchWithCatchTxError])
+  }, [fetchWithCatchTxError, onApprove, toastSuccess, t, dispatch, account, pid, chainId])
 
   const handleDeposit = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
