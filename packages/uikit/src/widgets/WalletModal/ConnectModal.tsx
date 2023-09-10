@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
 import EXTERNAL_LINK_PROPS from "../../util/externalLinkProps";
@@ -82,7 +83,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
             {!showMore && <MoreWalletCard t={t} onClick={() => setShowMore(true)} />}
           </Grid>
         </WalletWrapper>
-        <Box p="24px">
+        {/* <Box p="24px">
           <Text textAlign="center" color="textSubtle" as="p" mb="16px">
             {t("Haven’t got a crypto wallet yet?")}
           </Text>
@@ -95,7 +96,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
           >
             {t("Learn How to Connect")}
           </Button>
-        </Box>
+        </Box> */}
       </ModalBody>
     </ModalContainer>
   );

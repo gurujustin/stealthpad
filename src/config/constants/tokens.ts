@@ -182,9 +182,9 @@ export const bscTokens = {
     ChainId.BSC,
     '0x04d09e9A7E1b5159eD89A837C7B6C48540dC7Fa8',
     18,
-    'USDP',
-    'USD Stable Token by PunkSwapDEX',
-    'https://tether.to/',
+    'USDT',
+    'Tether USD',
+    'https://www.centre.io/usdt',
   ),
   btcb: new Token(
     ChainId.BSC,

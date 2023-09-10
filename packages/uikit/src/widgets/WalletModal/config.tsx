@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Metamask from "../../components/Svg/Icons/Metamask";
 import WalletConnect from "../../components/Svg/Icons/WalletConnect";
 import TrustWallet from "../../components/Svg/Icons/TrustWallet";
@@ -20,12 +21,12 @@ const connectors: Config[] = [
     priority: 1,
     href: "https://metamask.app.link/dapp/pancakeswap.finance/",
   },
-  {
-    title: "Binance Wallet",
-    icon: BinanceChain,
-    connectorId: ConnectorNames.BSC,
-    priority: 2,
-  },
+  // {
+  //   title: "Binance Wallet",
+  //   icon: BinanceChain,
+  //   connectorId: ConnectorNames.BSC,
+  //   priority: 2,
+  // },
   {
     title: "Coinbase Wallet",
     icon: CoinbaseWallet,
