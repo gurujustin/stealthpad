@@ -9,14 +9,13 @@ import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
 import { useRouter } from 'next/router'
 import { useLpTokenPrice, useFarmUser, usePriceCakeBusd } from 'state/farms/hooks'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
 import useUnstakeFarms from '../../hooks/useUnstakeFarms'
 import useStakeFarms from '../../hooks/useStakeFarms'
 import { FarmWithStakedValue } from '../types'
 import StakedLP from '../StakedLP'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { chain } from 'lodash'
 
 interface FarmCardActionsProps extends FarmWithStakedValue {
   lpLabel?: string
@@ -45,7 +44,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   lpTotalSupply,
   tokenAmountTotal,
   quoteTokenAmountTotal,
-  isTokenOnly
+  isTokenOnly,
 }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
@@ -116,9 +115,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
       >
-        {
-          isTokenOnly ? 'Stake ' + lpSymbol : t('Stake LP')
-        }
+        {isTokenOnly ? `Stake ${lpSymbol}` : t('Stake LP')}
       </Button>
     ) : (
       <IconButtonWrapper>

@@ -59,7 +59,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
   apr,
   addLiquidityUrl,
   cakePrice,
-  isTokenOnly
+  isTokenOnly,
 }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
@@ -117,7 +117,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
   }
 
   return (
-    <Modal title={isTokenOnly ? t('Stake ') + tokenName + 's' : t('Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={isTokenOnly ? `${t('Stake ') + tokenName}s` : t('Stake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}

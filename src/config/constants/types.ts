@@ -79,6 +79,7 @@ interface FarmConfigBaseProps {
   multiplier?: string
   isCommunity?: boolean
   isTokenOnly?: boolean
+  decimals?: number
   auctionHostingStartSeconds?: number
   auctionHostingEndDate?: string
   dual?: {

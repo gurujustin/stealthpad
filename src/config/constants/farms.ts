@@ -21,6 +21,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,
     isTokenOnly: true,
+    decimals: 8,
   },
   {
     pid: 1,
@@ -78,6 +79,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.usdc,
     quoteToken: serializedTokens.wbnb,
     isTokenOnly: true,
+    decimals: 8,
   },
 ]
 
