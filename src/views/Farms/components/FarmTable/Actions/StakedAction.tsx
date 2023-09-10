@@ -15,6 +15,7 @@ import { useFarmUser, useLpTokenPrice, usePriceCakeBusd } from 'state/farms/hook
 import styled from 'styled-components'
 import { getAddress } from 'utils/addressHelpers'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useApproveFarm from '../../../hooks/useApproveFarm'
 import useStakeFarms from '../../../hooks/useStakeFarms'
 import useUnstakeFarms from '../../../hooks/useUnstakeFarms'
@@ -23,7 +24,6 @@ import WithdrawModal from '../../WithdrawModal'
 import { ActionContainer, ActionContent, ActionTitles } from './styles'
 import { FarmWithStakedValue } from '../../types'
 import StakedLP from '../../StakedLP'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   lpTotalSupply,
   tokenAmountTotal,
   quoteTokenAmountTotal,
-  isTokenOnly
+  isTokenOnly,
 }) => {
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
@@ -135,7 +135,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       toastSuccess(t('Contract Enabled'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       dispatch(fetchFarmUserDataAsync({ account, pids: [pid], chainId }))
     }
-  }, [onApprove, dispatch, account, pid, t, toastSuccess, fetchWithCatchTxError])
+  }, [fetchWithCatchTxError, onApprove, toastSuccess, t, dispatch, account, pid, chainId])
 
   if (!account) {
     return (
@@ -209,9 +209,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             variant="secondary"
             disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
           >
-            {
-              isTokenOnly ? 'Stake ' + lpSymbol : t('Stake LP')
-            }
+            {isTokenOnly ? `Stake ${lpSymbol}` : t('Stake LP')}
           </Button>
         </ActionContent>
       </ActionContainer>

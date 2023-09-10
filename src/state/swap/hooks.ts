@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useMemo, useState } from 'react'
 import { SLOW_INTERVAL } from 'config/constants'
-import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from 'config/constants/exchange'
+import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY_ETH } from 'config/constants/exchange'
 import useSWRImmutable from 'swr/immutable'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -201,9 +201,11 @@ function validatedRecipient(recipient: any): string | null {
   return null
 }
 
-export function queryParametersToSwapState(parsedQs: ParsedUrlQuery): SwapState {
+export function queryParametersToSwapState(parsedQs: ParsedUrlQuery, chainId: ChainId): SwapState {
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency) || DEFAULT_INPUT_CURRENCY
-  let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency) || DEFAULT_OUTPUT_CURRENCY
+  let outputCurrency =
+    parseCurrencyFromURLParameter(parsedQs.outputCurrency) ||
+    (chainId === ChainId.BSC ? DEFAULT_OUTPUT_CURRENCY_ETH : DEFAULT_OUTPUT_CURRENCY)
   if (inputCurrency === outputCurrency) {
     if (typeof parsedQs.outputCurrency === 'string') {
       inputCurrency = ''
@@ -242,7 +244,7 @@ export function useDefaultsFromURLSearch():
 
   useEffect(() => {
     if (!chainId) return
-    const parsed = queryParametersToSwapState(query)
+    const parsed = queryParametersToSwapState(query, chainId)
 
     dispatch(
       replaceSwapState({

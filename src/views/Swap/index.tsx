@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { ChainId, CurrencyAmount, Token, Trade } from '@pancakeswap/sdk'
@@ -26,6 +27,7 @@ import { BIG_INT_ZERO } from 'config/constants/exchange'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import shouldShowSwapWarning from 'utils/shouldShowSwapWarning'
 import { useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
+import { usePollFarmsWithUserData } from 'state/farms/hooks'
 import useRefreshBlockNumberID from './hooks/useRefreshBlockNumber'
 import AddressInputPanel from './components/AddressInputPanel'
 import { GreyCard } from '../../components/Card'
@@ -65,7 +67,6 @@ import PriceChartContainer from './components/Chart/PriceChartContainer'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import ImportTokenWarningModal from '../../components/ImportTokenWarningModal'
-import { usePollFarmsWithUserData } from 'state/farms/hooks'
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -525,9 +526,15 @@ export default function Swap() {
                           (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
                       </Button>
                     ) : noRoute && userHasSpecifiedInputOutput ? (
-                      <GreyCard style={{ textAlign: 'center', padding: '0.75rem', height: '64px'}}>
-                        <Text color="textDisabled" fontSize={20} fontWeight={500} marginTop="6px">{t('Insufficient liquidity for this trade.')}</Text>
-                        {singleHopOnly && <Text color="textDisabled" fontSize={20} fontWeight={500} marginTop="6px">{t('Try enabling multi-hop trades.')}</Text>}
+                      <GreyCard style={{ textAlign: 'center', padding: '0.75rem', height: '64px' }}>
+                        <Text color="textDisabled" fontSize={20} fontWeight={500} marginTop="6px">
+                          {t('Insufficient liquidity for this trade.')}
+                        </Text>
+                        {singleHopOnly && (
+                          <Text color="textDisabled" fontSize={20} fontWeight={500} marginTop="6px">
+                            {t('Try enabling multi-hop trades.')}
+                          </Text>
+                        )}
                       </GreyCard>
                     ) : showApproveFlow ? (
                       <RowBetween>

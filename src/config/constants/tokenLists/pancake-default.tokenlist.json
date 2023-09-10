@@ -8,10 +8,7 @@
   },
   "tags": {},
   "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
-  "keywords": [
-    "uniswap",
-    "default"
-  ],
+  "keywords": ["uniswap", "default"],
   "tokens": [
     {
       "chainId": 1,
@@ -439,7 +436,7 @@
     },
     {
       "chainId": 8453,
-      "address": "0xC16f056D4eBb5246CfB3a1D128A1974fC2cec6Aa",
+      "address": "0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9",
       "name": "StealthPad",
       "symbol": "STEALTH",
       "decimals": 8,

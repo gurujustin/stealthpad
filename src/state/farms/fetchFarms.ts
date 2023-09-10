@@ -7,11 +7,11 @@ import { fetchMasterChefData } from './fetchMasterChefData'
 import { SerializedFarm } from '../types'
 
 const fetchFarms = async (farmsToFetch: SerializedFarmConfig[], chainId: number): Promise<SerializedFarm[]> => {
-
   const [farmResult, masterChefResult] = await Promise.all([
     fetchPublicFarmsData(farmsToFetch, chainId),
     fetchMasterChefData(farmsToFetch, chainId),
   ])
+  console.log(farmResult, masterChefResult)
   return farmsToFetch.map((farm, index) => {
     const [
       tokenBalanceLP,
@@ -37,7 +37,9 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[], chainId: number)
     const quoteTokenAmountMc = quoteTokenAmountTotal.times(lpTokenRatio)
 
     // Total staked in LP, in quote token value
-    const lpTotalInQuoteToken = farm.isTokenOnly ? new BigNumber(tokenBalanceLP).div(BIG_TEN.pow(tokenDecimals)) : quoteTokenAmountMc.times(BIG_TWO)
+    const lpTotalInQuoteToken = farm.isTokenOnly
+      ? new BigNumber(tokenBalanceLP).div(BIG_TEN.pow(tokenDecimals))
+      : quoteTokenAmountMc.times(BIG_TWO)
 
     const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
     const poolWeight = totalRegularAllocPoint ? allocPoint.div(new BigNumber(totalRegularAllocPoint)) : BIG_ZERO

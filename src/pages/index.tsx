@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FACTORY_ADDRESS } from '@pancakeswap/sdk'
 import { getUnixTime, sub } from 'date-fns'
 import { gql } from 'graphql-request'
@@ -8,21 +9,22 @@ import { getCakeVaultAddress } from 'utils/addressHelpers'
 import { getCakeContract } from 'utils/contractHelpers'
 import { getBlocksFromTimestamps } from 'utils/getBlocksFromTimestamps'
 import { formatEther } from '@ethersproject/units'
-import Home from '../views/Home'
+import Swap from '../views/Swap'
 
 const IndexPage = ({ totalTx30Days, addressCount30Days, tvl }) => {
   return (
-    <SWRConfig
-      value={{
-        fallback: {
-          totalTx30Days,
-          addressCount30Days,
-          tvl,
-        },
-      }}
-    >
-      <Home />
-    </SWRConfig>
+    <Swap />
+    // <SWRConfig
+    //   value={{
+    //     fallback: {
+    //       totalTx30Days,
+    //       addressCount30Days,
+    //       tvl,
+    //     },
+    //   }}
+    // >
+    //   <Home />
+    // </SWRConfig>
   )
 }
 

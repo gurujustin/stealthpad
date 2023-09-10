@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FooterLinkType } from '@pancakeswap/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 

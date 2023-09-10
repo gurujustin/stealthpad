@@ -6,13 +6,13 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Image from 'next/image'
 import { setupNetwork } from 'utils/wallet'
 
-const chains = [bsc, bscTest, stealthTest]
+const chains = [bsc, bscTest]
 export const NetworkSelect = () => {
   const { t } = useTranslation()
   const img = {
     [ChainId.BSC]: '/images/tokens/eth-logo.png',
     [ChainId.BSC_TESTNET]: '/images/tokens/base-logo.svg',
-    [ChainId.STEALTH_TESTNET]: '/images/tokens/stealth-logo.png'
+    [ChainId.STEALTH_TESTNET]: '/images/tokens/stealth-logo.png',
   }
   return (
     <>
@@ -35,24 +35,19 @@ export const NetworkSwitcher = () => {
   const img = {
     [ChainId.BSC]: '/images/tokens/eth-logo.png',
     [ChainId.BSC_TESTNET]: '/images/tokens/base-logo.svg',
-    [ChainId.STEALTH_TESTNET]: '/images/tokens/stealth-logo.png'
+    [ChainId.STEALTH_TESTNET]: '/images/tokens/stealth-logo.png',
   }
   let networkName
   if (chainId === bsc.id) {
     networkName = bsc.name
-  } else if ( chainId === bscTest.id) {
+  } else if (chainId === bscTest.id) {
     networkName = bscTest.name
   } else {
     networkName = stealthTest.name
   }
 
   return (
-    <UserMenu
-      mr="8px"
-      avatarSrc={img[chainId]}
-      account={networkName}
-      ellipsis={false}
-    >
+    <UserMenu mr="8px" avatarSrc={img[chainId]} account={networkName} ellipsis={false}>
       {() => <NetworkSelect />}
     </UserMenu>
   )

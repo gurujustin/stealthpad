@@ -6,16 +6,12 @@ import { ChainTokenList } from './types'
 export const ROUTER_ADDRESS = {
   [ChainId.BSC]: '0xb5998759B5922ea88fb69612401B003bD664bA99',
   [ChainId.BSC_TESTNET]: '0x8b2F33e7ce2F12b448B524decd0D09BC5c09033E',
-  [ChainId.STEALTH_TESTNET]: '0xaa616eCEF6a3C40ABfC923150039f49c745A0B94'
+  [ChainId.STEALTH_TESTNET]: '0xaa616eCEF6a3C40ABfC923150039f49c745A0B94',
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.BSC]: [
-    bscTokens.wbnb,
-    bscTokens.cake,
-    bscTokens.usdt,
-  ],
+  [ChainId.BSC]: [bscTokens.wbnb, bscTokens.cake, bscTokens.usdt],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.STEALTH_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
 }
@@ -52,9 +48,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.BSC]: [
-    [bscTokens.cake, bscTokens.wbnb],
-  ],
+  [ChainId.BSC]: [[bscTokens.cake, bscTokens.wbnb]],
 }
 
 export const BIG_INT_ZERO = JSBI.BigInt(0)
@@ -85,7 +79,8 @@ export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 // ETH
 export const DEFAULT_INPUT_CURRENCY = 'ETH'
 // STEALTH
-export const DEFAULT_OUTPUT_CURRENCY = ''
+export const DEFAULT_OUTPUT_CURRENCY = '0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9'
+export const DEFAULT_OUTPUT_CURRENCY_ETH = '0xB18F98822C22492Bd6b77D19cae9367f3D60fcBf'
 
 // Handler string is passed to Gelato to use PCS router
 export const GELATO_HANDLER = 'pancakeswap'

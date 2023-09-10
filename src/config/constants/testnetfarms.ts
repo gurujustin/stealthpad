@@ -14,7 +14,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 0,
     lpSymbol: 'STEALTH',
     lpAddresses: {
-      8453: '0xC16f056D4eBb5246CfB3a1D128A1974fC2cec6Aa',
+      8453: '0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9',
       1: '',
       5: '',
     },

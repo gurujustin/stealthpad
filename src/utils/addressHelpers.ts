@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChainId } from '@pancakeswap/sdk'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import addresses from 'config/constants/contracts'
@@ -13,7 +14,6 @@ export const getMasterChefAddress = (chainId?: number) => {
   return getAddress(addresses.masterChef, chainId)
 }
 export const getMasterChefV1Address = () => {
-
   return getAddress(addresses.masterChefV1)
 }
 export const getMulticallAddress = (chainId?: number) => {

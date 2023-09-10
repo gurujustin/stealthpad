@@ -11,7 +11,7 @@ const STEALTH_ETH = new Token(
 
 const STEALTH_BASE = new Token(
   ChainId.BSC_TESTNET,
-  '0xC16f056D4eBb5246CfB3a1D128A1974fC2cec6Aa',
+  '0x5cdf9fc2bf11f3e6ef99344f3d13e58ddac62ec9',
   8,
   'STEALTH',
   'StealthPad Token',
@@ -46,7 +46,7 @@ const USDC_TESTNET = new Token(
 )
 
 const USDT_MAIN = new Token(
-  ChainId.BSC_TESTNET,
+  ChainId.BSC,
   '0xAd72025F6e7eB9f540465e7e623a5995c502E796',
   6,
   'USDT',
@@ -73,7 +73,7 @@ const BUSD_TESTNET = new Token(
 )
 
 const BUSD_MAIN = new Token(
-  ChainId.BSC_TESTNET,
+  ChainId.BSC,
   '0xAd72025F6e7eB9f540465e7e623a5995c502E796',
   6,
   'BUSD',
