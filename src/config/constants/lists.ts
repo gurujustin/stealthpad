@@ -1,4 +1,6 @@
-const PANCAKE_EXTENDED = 'https://github.com/stealthpadxyz/stealthswap-tokens/blob/main/stealthswap-default.tokenlist.json'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const PANCAKE_EXTENDED =
+  'https://github.com/stealthpadxyz/stealthswap-tokens/blob/main/stealthswap-default.tokenlist.json'
 const COINGECKO = 'https://tokens.pancakeswap.finance/coingecko.json'
 const CMC = 'https://tokens.pancakeswap.finance/cmc.json'
 
@@ -18,6 +20,4 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [
-  PANCAKE_EXTENDED,
-]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [PANCAKE_EXTENDED]
