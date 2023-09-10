@@ -46,7 +46,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'USDbC-ETH LP',
+    lpSymbol: 'ETH-USDbC LP',
     lpAddresses: {
       8453: '0x1D3Dd7fCB2eC13a639E6B5265e63D9120e639444',
       1: '',
