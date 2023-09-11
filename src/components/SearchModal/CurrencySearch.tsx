@@ -18,7 +18,7 @@ import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { useSortedTokensByQuery, createFilterToken } from './filtering'
 import useTokenComparator from './sorting'
-import { getSwapSound } from './swapSound'
+// import { getSwapSound } from './swapSound'
 
 import ImportRow from './ImportRow'
 
