@@ -97,7 +97,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
       },
     ]
     const [[poolLength], [cakePerBlockRaw]] = await multicall(masterchefABI, calls, chainId)
-    const regularCakePerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
+    const regularCakePerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw), 8)
     const farmsToFetch = config.filter((farmConfig) => pids.includes(farmConfig.pid))
 
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))

@@ -50,7 +50,7 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[], chainId: number)
       quoteToken: farm.quoteToken,
       tokenAmountTotal: tokenAmountTotal.toJSON(),
       quoteTokenAmountTotal: quoteTokenAmountTotal.toJSON(),
-      lpTotalSupply: lpTotalSupplyBN.toJSON(),
+      lpTotalSupply: farm.isTokenOnly ? new BigNumber(lpTokenBalanceMC).toJSON() : lpTotalSupplyBN.toJSON(),
       lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
       tokenPriceVsQuote: quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
       poolWeight: poolWeight.toJSON(),

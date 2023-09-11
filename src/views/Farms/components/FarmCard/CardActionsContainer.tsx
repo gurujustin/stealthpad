@@ -29,6 +29,7 @@ interface FarmCardActionsProps {
 }
 
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl, lpLabel, displayApr }) => {
+  console.log(farm)
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
   const { chainId } = useActiveWeb3React()
@@ -81,7 +82,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           {t('Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} decimals={decimals} />
+      <HarvestAction earnings={earnings} pid={pid} decimals={8} />
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           {farm.lpSymbol}

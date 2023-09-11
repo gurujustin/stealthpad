@@ -14,7 +14,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 0,
     lpSymbol: 'STEALTH',
     lpAddresses: {
-      8453: '0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9',
+      8453: CAKE_BNB_LP_MAINNET,
       1: '',
       5: '',
     },
@@ -60,19 +60,20 @@ const farms: SerializedFarmConfig[] = [
     pid: 4,
     lpSymbol: 'WETH',
     lpAddresses: {
-      8453: '0x4200000000000000000000000000000000000006',
+      8453: '0x1D3Dd7fCB2eC13a639E6B5265e63D9120e639444',
       1: '',
       5: '',
     },
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.usdc,
     isTokenOnly: true,
+    decimals: 18,
   },
   {
     pid: 5,
     lpSymbol: 'USDbC',
     lpAddresses: {
-      8453: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+      8453: '0x1D3Dd7fCB2eC13a639E6B5265e63D9120e639444',
       1: '',
       5: '',
     },

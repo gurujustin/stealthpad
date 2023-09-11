@@ -33,7 +33,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
 
   // If user didn't connect wallet default balance will be 0
   if (!earningsBigNumber.isZero()) {
-    earnings = getBalanceAmount(earningsBigNumber, decimals)
+    earnings = getBalanceAmount(earningsBigNumber, 8)
     earningsBusd = earnings.multipliedBy(cakePrice).toNumber()
     displayBalance = earnings.toFixed(3, BigNumber.ROUND_DOWN)
   }

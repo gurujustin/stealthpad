@@ -6,7 +6,7 @@ import { SerializedFarm } from '../types'
 import { SerializedFarmConfig } from '../../config/constants/types'
 
 const fetchFarmCalls = (farm: SerializedFarm, chainId: number) => {
-  const { lpAddresses, token, quoteToken } = farm
+  const { lpAddresses, token, quoteToken, isTokenOnly } = farm
   const lpAddress = getAddress(lpAddresses, chainId)
   return [
     // Balance of token in the LP contract
@@ -23,7 +23,7 @@ const fetchFarmCalls = (farm: SerializedFarm, chainId: number) => {
     },
     // Balance of LP tokens in the master chef contract
     {
-      address: lpAddress,
+      address: isTokenOnly ? token.address : lpAddress,
       name: 'balanceOf',
       params: [getMasterChefAddress(chainId)],
     },

@@ -123,10 +123,10 @@ const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) =
         pid: farm.pid,
         token: farm.token,
         quoteToken: farm.quoteToken,
-        isTokenOnly: farm.isTokenOnly
+        isTokenOnly: farm.isTokenOnly,
       },
       earned: {
-        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
+        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings), 8),
         pid: farm.pid,
       },
       liquidity: {

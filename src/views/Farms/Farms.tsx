@@ -24,6 +24,7 @@ import Select, { OptionProps } from 'components/Select/Select'
 import Loading from 'components/Loading'
 import ToggleView from 'components/ToggleView/ToggleView'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { BIG_TEN } from 'utils/bigNumber'
 import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { FarmWithStakedValue } from './components/types'
@@ -169,14 +170,15 @@ const Farms: React.FC = ({ children }) => {
           return farm
         }
         const totalLiquidity = farm.isTokenOnly
-          ? new BigNumber(farm.lpTotalInQuoteToken).times(farm.tokenPriceBusd)
+          ? new BigNumber(farm.lpTotalSupply).times(new BigNumber(farm.tokenPriceBusd)).div(BIG_TEN.pow(farm.decimals))
           : new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
+
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               new BigNumber(farm.poolWeight),
               cakePrice,
               totalLiquidity,
-              farm.lpAddresses[ChainId.BSC],
+              farm.lpAddresses[chainId],
               regularCakePerBlock,
             )
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
@@ -192,7 +194,7 @@ const Farms: React.FC = ({ children }) => {
       }
       return farmsToDisplayWithAPR
     },
-    [cakePrice, query, isActive, regularCakePerBlock],
+    [query, isActive, cakePrice, chainId, regularCakePerBlock],
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
