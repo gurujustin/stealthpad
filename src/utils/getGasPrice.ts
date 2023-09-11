@@ -9,7 +9,7 @@ import { GAS_PRICE_GWEI } from 'state/types'
 const getGasPrice = (chainId = ChainId.BSC): string => {
   const state = store.getState()
   const userGas = state.user.gasPrice || GAS_PRICE_GWEI.default
-  return chainId === ChainId.BSC ? userGas : GAS_PRICE_GWEI.testnet
+  return chainId === ChainId.BSC || chainId === ChainId.BASE ? userGas : GAS_PRICE_GWEI.testnet
 }
 
 export default getGasPrice

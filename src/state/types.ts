@@ -55,10 +55,13 @@ export const EMPTY_LIST: TokenAddressMap = {
 }
 
 export enum GAS_PRICE {
-  default = '1.5',
-  fast = '1.51',
-  instant = '2',
+  default = '0.05',
+  fast = '0.1',
+  instant = '0.3',
   testnet = '10',
+  defaultBase = '0.0001',
+  fastBase = '0.001',
+  instantBase = '0.1',
 }
 
 export const GAS_PRICE_GWEI = {
@@ -66,6 +69,9 @@ export const GAS_PRICE_GWEI = {
   fast: parseUnits(GAS_PRICE.fast, 'gwei').toString(),
   instant: parseUnits(GAS_PRICE.instant, 'gwei').toString(),
   testnet: parseUnits(GAS_PRICE.testnet, 'gwei').toString(),
+  defaultBase: parseUnits(GAS_PRICE.defaultBase, 'gwei').toString(),
+  fastBase: parseUnits(GAS_PRICE.fastBase, 'gwei').toString(),
+  instantBase: parseUnits(GAS_PRICE.instantBase, 'gwei').toString(),
 }
 
 export type DeserializedPoolVault = DeserializedPool & DeserializedCakeVault

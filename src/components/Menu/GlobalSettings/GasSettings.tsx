@@ -3,10 +3,13 @@ import QuestionHelper from 'components/QuestionHelper'
 import { useTranslation } from 'contexts/Localization'
 import { useGasPriceManager } from 'state/user/hooks'
 import { GAS_PRICE_GWEI, GAS_PRICE } from 'state/types'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ChainId } from '@pancakeswap/sdk'
 
 const GasSettings = () => {
   const { t } = useTranslation()
   const [gasPrice, setGasPrice] = useGasPriceManager()
+  const { chainId } = useActiveWeb3React()
 
   return (
     <Flex flexDirection="column">
@@ -26,33 +29,49 @@ const GasSettings = () => {
           mr="4px"
           scale="sm"
           onClick={() => {
-            setGasPrice(GAS_PRICE_GWEI.default)
+            setGasPrice(chainId === ChainId.BSC ? GAS_PRICE_GWEI.default : GAS_PRICE_GWEI.defaultBase)
           }}
-          variant={gasPrice === GAS_PRICE_GWEI.default ? 'primary' : 'tertiary'}
+          variant={
+            gasPrice === (ChainId.BSC ? GAS_PRICE_GWEI.default : GAS_PRICE_GWEI.defaultBase) ? 'primary' : 'tertiary'
+          }
         >
-          {t('Standard (%gasPrice%)', { gasPrice: GAS_PRICE.default })}
+          {t('Standard (%gasPrice%)', {
+            gasPrice: chainId === ChainId.BSC ? GAS_PRICE.default : GAS_PRICE.defaultBase,
+          })}
         </Button>
         <Button
           mt="4px"
           mr="4px"
           scale="sm"
           onClick={() => {
-            setGasPrice(GAS_PRICE_GWEI.fast)
+            setGasPrice(chainId === ChainId.BSC ? GAS_PRICE_GWEI.fast : GAS_PRICE_GWEI.fastBase)
           }}
-          variant={gasPrice === GAS_PRICE_GWEI.fast ? 'primary' : 'tertiary'}
+          variant={
+            gasPrice === (chainId === ChainId.BSC ? GAS_PRICE_GWEI.fast : GAS_PRICE_GWEI.fastBase)
+              ? 'primary'
+              : 'tertiary'
+          }
         >
-          {t('Fast (%gasPrice%)', { gasPrice: GAS_PRICE.fast })}
+          {t('Fast (%gasPrice%)', {
+            gasPrice: chainId === ChainId.BSC ? GAS_PRICE.fast : GAS_PRICE.fastBase,
+          })}
         </Button>
         <Button
           mr="4px"
           mt="4px"
           scale="sm"
           onClick={() => {
-            setGasPrice(GAS_PRICE_GWEI.instant)
+            setGasPrice(chainId === ChainId.BSC ? GAS_PRICE_GWEI.instant : GAS_PRICE_GWEI.instantBase)
           }}
-          variant={gasPrice === GAS_PRICE_GWEI.instant ? 'primary' : 'tertiary'}
+          variant={
+            gasPrice === (chainId === ChainId.BSC ? GAS_PRICE_GWEI.instant : GAS_PRICE_GWEI.instantBase)
+              ? 'primary'
+              : 'tertiary'
+          }
         >
-          {t('Instant (%gasPrice%)', { gasPrice: GAS_PRICE.instant })}
+          {t('Instant (%gasPrice%)', {
+            gasPrice: chainId === ChainId.BSC ? GAS_PRICE.instant : GAS_PRICE.instantBase,
+          })}
         </Button>
       </Flex>
     </Flex>
