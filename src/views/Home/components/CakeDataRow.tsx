@@ -95,13 +95,15 @@ const CakeDataRow = () => {
         params: ['0x000000000000000000000000000000000000dEaD'],
       }
       const [tokenDataResultRaw] = await Promise.all([
-        multicallv2({abi: cakeAbi, calls: [totalSupplyCall, burnedTokenCall], options: {
-          requireSuccess: false,
-        }})
+        multicallv2({
+          abi: cakeAbi,
+          calls: [totalSupplyCall, burnedTokenCall],
+          options: {
+            requireSuccess: false,
+          },
+        }),
         // cakeVault.totalLockedAmount(),
       ])
-      console.log("debug mcap", tokenDataResultRaw)
-
       const [totalSupply, burned] = tokenDataResultRaw.flat()
 
       const totalBurned = planetFinanceBurnedTokensWei.add(burned)
