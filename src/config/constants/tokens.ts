@@ -10,7 +10,7 @@ const STEALTH_ETH = new Token(
 )
 
 const STEALTH_BASE = new Token(
-  ChainId.BSC_TESTNET,
+  ChainId.BASE,
   '0x5CDF9FC2Bf11F3E6ef99344f3D13e58DdAc62Ec9',
   8,
   'STEALTH',
@@ -37,7 +37,7 @@ const USDT_BSC = new Token(
 )
 
 const USDC_TESTNET = new Token(
-  ChainId.BSC_TESTNET,
+  ChainId.BASE,
   '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
   6,
   'USDbC',
@@ -64,7 +64,7 @@ const BUSD_MAINNET = new Token(
 )
 
 const BUSD_TESTNET = new Token(
-  ChainId.BSC_TESTNET,
+  ChainId.BASE,
   '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
   6,
   'BUSD',
@@ -74,7 +74,7 @@ const BUSD_TESTNET = new Token(
 
 const BUSD_MAIN = new Token(
   ChainId.BSC,
-  '0xAd72025F6e7eB9f540465e7e623a5995c502E796',
+  '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
   6,
   'BUSD',
   'Binance USD',
@@ -83,19 +83,19 @@ const BUSD_MAIN = new Token(
 
 export const USDC = {
   [ChainId.BSC]: USDT_BSC,
-  [ChainId.BSC_TESTNET]: USDC_TESTNET,
+  [ChainId.BASE]: USDC_TESTNET,
   [ChainId.STEALTH_TESTNET]: USDT_MAIN,
 }
 
 export const STEALTH = {
   [ChainId.BSC]: STEALTH_ETH,
-  [ChainId.BSC_TESTNET]: STEALTH_BASE,
+  [ChainId.BASE]: STEALTH_BASE,
   [ChainId.STEALTH_TESTNET]: STEALTH_MAIN,
 }
 
 export const BUSD = {
   [ChainId.BSC]: BUSD_MAIN,
-  [ChainId.BSC_TESTNET]: BUSD_TESTNET,
+  [ChainId.BASE]: USDC_TESTNET,
   [ChainId.STEALTH_TESTNET]: BUSD_MAIN,
 }
 
@@ -2363,12 +2363,12 @@ export const bscTokens = {
 }
 
 export const bscTestnetTokens = {
-  wbnb: WETH[ChainId.BSC_TESTNET],
+  wbnb: WETH[ChainId.BASE],
   cake: STEALTH_BASE,
   busd: BUSD_TESTNET,
   usdc: USDC_TESTNET,
   syrup: new Token(
-    ChainId.BSC_TESTNET,
+    ChainId.BASE,
     '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
     18,
     'SYRUP',
@@ -2376,7 +2376,7 @@ export const bscTestnetTokens = {
     'https://swap.stealthpad.xyz/',
   ),
   bake: new Token(
-    ChainId.BSC_TESTNET,
+    ChainId.BASE,
     '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
     18,
     'BAKE',
@@ -2391,7 +2391,7 @@ export const stealthTestnetTokens = {
   busd: BUSD_MAIN,
   usdt: USDT_MAIN,
   syrup: new Token(
-    ChainId.BSC_TESTNET,
+    ChainId.BASE,
     '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
     18,
     'SYRUP',
@@ -2399,7 +2399,7 @@ export const stealthTestnetTokens = {
     'https://swap.stealthpad.xyz/',
   ),
   bake: new Token(
-    ChainId.BSC_TESTNET,
+    ChainId.BASE,
     '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
     18,
     'BAKE',

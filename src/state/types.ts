@@ -50,7 +50,7 @@ export interface TagInfo extends TagDetails {
  */
 export const EMPTY_LIST: TokenAddressMap = {
   [ChainId.BSC]: {},
-  [ChainId.BSC_TESTNET]: {},
+  [ChainId.BASE]: {},
   [ChainId.STEALTH_TESTNET]: {},
 }
 

@@ -166,7 +166,7 @@ export function useAllLists(): {
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
     [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
-    [ChainId.BSC_TESTNET]: { ...map1[ChainId.BSC_TESTNET], ...map2[ChainId.BSC_TESTNET] },
+    [ChainId.BASE]: { ...map1[ChainId.BASE], ...map2[ChainId.BASE] },
     [ChainId.STEALTH_TESTNET]: { ...map1[ChainId.STEALTH_TESTNET], ...map2[ChainId.STEALTH_TESTNET] },
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Signer } from '@ethersproject/abstract-signer'
 import type { Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
@@ -131,11 +132,11 @@ import { ChainId } from '@pancakeswap/sdk'
 import { provider } from './wagmi'
 
 // export const getContract = (abi: any, address: string, signer?: Signer | Provider, chainId?: number) => {
-  
-//   const signerOrProvider = signer ?? chainId === ChainId.BSC_TESTNET ? goerliRpcProvider : bscRpcProvider
+
+//   const signerOrProvider = signer ?? chainId === ChainId.BASE ? goerliRpcProvider : bscRpcProvider
 //   return new Contract(address, abi, signerOrProvider)
 // }
-export const getContract = (abi: any, address: string, signer?: Signer | Provider, chainId?: number) => {  
+export const getContract = (abi: any, address: string, signer?: Signer | Provider, chainId?: number) => {
   const signerOrProvider = signer ?? provider({ chainId })
   return new Contract(address, abi, signerOrProvider)
 }
@@ -247,7 +248,6 @@ export const getChainlinkOracleContract = (address: string, signer?: Signer | Pr
   return getContract(chainlinkOracleAbi, address, signer) as ChainlinkOracle
 }
 export const getMulticallContract = (chainId?: number, signer?: Signer | Provider) => {
-
   return getContract(MultiCallAbi, getMulticallAddress(chainId), signer, chainId) as Multicall
 }
 export const getBunnySpecialCakeVaultContract = (signer?: Signer | Provider) => {

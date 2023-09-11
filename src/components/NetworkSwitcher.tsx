@@ -11,7 +11,7 @@ export const NetworkSelect = () => {
   const { t } = useTranslation()
   const img = {
     [ChainId.BSC]: '/images/tokens/eth-logo.png',
-    [ChainId.BSC_TESTNET]: '/images/tokens/base-logo.svg',
+    [ChainId.BASE]: '/images/tokens/base-logo.svg',
     [ChainId.STEALTH_TESTNET]: '/images/tokens/stealth-logo.png',
   }
   return (
@@ -34,7 +34,7 @@ export const NetworkSwitcher = () => {
   const { chainId } = useActiveWeb3React()
   const img = {
     [ChainId.BSC]: '/images/tokens/eth-logo.png',
-    [ChainId.BSC_TESTNET]: '/images/tokens/base-logo.svg',
+    [ChainId.BASE]: '/images/tokens/base-logo.svg',
     [ChainId.STEALTH_TESTNET]: '/images/tokens/stealth-logo.png',
   }
   let networkName

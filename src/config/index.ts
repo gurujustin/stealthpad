@@ -11,7 +11,7 @@ export const BSC_BLOCK_TIME = 5
 
 export const BASE_BSC_SCAN_URLS = {
   [ChainId.BSC]: 'https://etherscan.io',
-  [ChainId.BSC_TESTNET]: 'https://basescan.org/',
+  [ChainId.BASE]: 'https://basescan.org/',
   [ChainId.STEALTH_TESTNET]: 'https://goerli.etherscan.io/',
 }
 

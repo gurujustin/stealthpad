@@ -10,9 +10,7 @@ describe('Token', () => {
     })
 
     it('false if chain id differs', () => {
-      expect(new Token(ChainId.BSC_TESTNET, ADDRESS_ONE, 18).equals(new Token(ChainId.BSC, ADDRESS_ONE, 18))).toBe(
-        false
-      )
+      expect(new Token(ChainId.BASE, ADDRESS_ONE, 18).equals(new Token(ChainId.BSC, ADDRESS_ONE, 18))).toBe(false)
     })
 
     it('true if only decimals differs', () => {

@@ -6,9 +6,9 @@ describe('Pair', () => {
 
   describe('constructor', () => {
     it('cannot be used for tokens on different chains', () => {
-      expect(
-        () => new Pair(new TokenAmount(USDC, '100'), new TokenAmount(WNATIVE[ChainId.BSC_TESTNET], '100'))
-      ).toThrow('CHAIN_IDS')
+      expect(() => new Pair(new TokenAmount(USDC, '100'), new TokenAmount(WNATIVE[ChainId.BASE], '100'))).toThrow(
+        'CHAIN_IDS'
+      )
     })
   })
 

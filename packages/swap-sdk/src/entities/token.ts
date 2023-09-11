@@ -93,8 +93,8 @@ export const WETH = {
     'Wrapped ETH',
     'https://swap.stealthpad.xyz'
   ),
-  [ChainId.BSC_TESTNET]: new Token(
-    ChainId.BSC_TESTNET,
+  [ChainId.BASE]: new Token(
+    ChainId.BASE,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',
@@ -115,6 +115,6 @@ export const WNATIVE = {
   // [ChainId.ETHEREUM]: WETH9[ChainId.ETHEREUM],
   // [ChainId.RINKEBY]: WETH9[ChainId.RINKEBY],
   [ChainId.BSC]: WETH[ChainId.BSC],
-  [ChainId.BSC_TESTNET]: WETH[ChainId.BSC_TESTNET],
+  [ChainId.BASE]: WETH[ChainId.BASE],
   [ChainId.STEALTH_TESTNET]: WETH[ChainId.STEALTH_TESTNET],
 }

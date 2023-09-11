@@ -20,6 +20,8 @@ import { bscTokens } from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { bscRpcProvider } from 'utils/providers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ChainId } from '@pancakeswap/sdk'
 import fetchFarms from '../farms/fetchFarms'
 import getFarmsPrices from '../farms/getFarmsPrices'
 import {
@@ -39,8 +41,6 @@ import { getTokenPricesFromFarm } from './helpers'
 import { resetUserState } from '../global/actions'
 import { fetchUserIfoCredit, fetchPublicIfoData } from './fetchUserIfo'
 import { fetchVaultUser, fetchFlexibleSideVaultUser } from './fetchVaultUser'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ChainId } from '@pancakeswap/sdk'
 
 export const initialPoolVaultState = Object.freeze({
   totalShares: null,
@@ -120,7 +120,7 @@ export const fetchCakePoolUserDataAsync = (account: string) => async (dispatch) 
     params: [account],
   }
   const cakeContractCalls = [allowanceCall, balanceOfCall]
-  const [[allowance], [stakingTokenBalance]] = await multicallv2({abi: cakeAbi, calls: cakeContractCalls})
+  const [[allowance], [stakingTokenBalance]] = await multicallv2({ abi: cakeAbi, calls: cakeContractCalls })
 
   dispatch(
     setPoolUserData({
@@ -136,7 +136,7 @@ export const fetchCakePoolUserDataAsync = (account: string) => async (dispatch) 
 export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (dispatch, getState) => {
   try {
     const [blockLimits, totalStakings, profileRequirements, currentBlock] = await Promise.all([
-      fetchPoolsBlockLimits(ChainId.BSC_TESTNET),
+      fetchPoolsBlockLimits(ChainId.BASE),
       fetchPoolsTotalStaking(),
       fetchPoolsProfileRequirement(),
       currentBlockNumber ? Promise.resolve(currentBlockNumber) : bscRpcProvider.getBlockNumber(),
@@ -155,10 +155,9 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
           }).length > 0
       )
     })
-    const { chainId } =useActiveWeb3React()
+    const { chainId } = useActiveWeb3React()
     const poolsWithDifferentFarmToken =
       activePriceHelperLpsConfig.length > 0 ? await fetchFarms(priceHelperLpsConfig, chainId) : []
-      activePriceHelperLpsConfig.length > 0 ? [] : []
     const farmsData = getState().farms.data
     const bnbBusdFarm =
       activePriceHelperLpsConfig.length > 0

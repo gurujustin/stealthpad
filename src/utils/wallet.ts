@@ -12,9 +12,9 @@ const NETWORK_CONFIG = {
     scanURL: BASE_BSC_SCAN_URLS[ChainId.BSC],
     rpcUrls: BSC_RPC_URLS,
   },
-  [ChainId.BSC_TESTNET]: {
+  [ChainId.BASE]: {
     name: 'Base Network',
-    scanURL: BASE_BSC_SCAN_URLS[ChainId.BSC_TESTNET],
+    scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE],
     rpcUrls: BSC_TESTNET_RPC_URLS,
   },
   [ChainId.STEALTH_TESTNET]: {
