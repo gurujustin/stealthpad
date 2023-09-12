@@ -4,7 +4,7 @@ interface IFrameProps {
     height?: string;
   }
   
-  const IFrame: React.FC<IFrameProps> = ({ src, width = "560", height = "315" }) => {
+  const IFrame: React.FC<IFrameProps> = ({ src, width, height }) => {
     return (
       <div>
         <iframe
