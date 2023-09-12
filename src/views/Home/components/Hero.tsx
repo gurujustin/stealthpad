@@ -103,9 +103,9 @@ const Hero = () => {
       <Flex
         position="relative"
         flexDirection={['column-reverse', null, null, 'row']}
-        alignItems={['flex-end', null, null, 'center']}
+        alignItems={['center', null, null, 'center']}
         justifyContent="center"
-        mt={[account ? '280px' : '50px', null, 0]}
+        mt={[null, null, 0]}
         id="homepage-hero"
       >
         <Flex flex="1" flexDirection="column">
@@ -115,23 +115,17 @@ const Hero = () => {
           <Heading scale="md" mb="24px">
             {t('StealthSwap is an automated market maker (AMM) that allows users to exchange tokens, providing liquidity via farming, staking, and earning rewards in return.')}
           </Heading>
-          <Flex
-            height={['192px', null, null, '100%']}
-            width={['192px', null, null, '100%']}
-            flex={[null, null, null, '1']}
-            mb={['24px', null, null, '0']}
-            position="relative"
-          >
+          <Flex>
             {!account && <ConnectWalletButton mr="8px" />}
             <NextLinkFromReactRouter to="/swap">
               <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
             </NextLinkFromReactRouter>
           </Flex>
         </Flex>
-        <Flex>
-          <IFrame width='700' height='400' src='https://defillama.com/chart/protocol/stealthpad?&theme=dark' />
-        </Flex>
-        {/* <Flex
+        {/* <Flex>
+          <IFrame width='560' height='315' src='https://defillama.com/chart/protocol/stealthpad?&theme=dark' />
+        </Flex> */}
+        <Flex
           height={['192px', null, null, '100%']}
           width={['192px', null, null, '100%']}
           flex={[null, null, null, '1']}
@@ -140,11 +134,11 @@ const Hero = () => {
         >
           <BunnyWrapper>
             <Image src={bunnyImage} priority placeholder="blur" alt={t('Lunar bunny')} />
-          </BunnyWrapper> */}
+          </BunnyWrapper>
           {/* <StarsWrapper>
             <CompositeImage {...starsImage} />
           </StarsWrapper> */}
-        {/* </Flex> */}
+        </Flex>
       </Flex>
     </>
   )
